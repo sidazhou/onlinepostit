@@ -40,6 +40,7 @@ body {
 
 body {
   background: white;
+  background-image: url('../../images/cream_dust.png'); 
   color: #222222;
   padding: 0;
   margin: 0;
