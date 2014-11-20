@@ -21,7 +21,7 @@ $(document).ready(function() {
 
   $(function() {
       $('#settings').click(function(){
-        $('.submenu').slideToggle();
+        $('.subMenu').slideToggle();
       });
   });
 

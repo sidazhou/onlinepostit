@@ -22,6 +22,17 @@
   clear: both;
 }
 
+.sub-menu{
+  float: left;
+  width: 10%;
+  height: 100%;
+  background-color: #eee;
+}
+
+.sub-menu ul {
+  list-style: none;
+}
+
 /* TEST SIDEBAR */
 .submenu{display:none;}
 
