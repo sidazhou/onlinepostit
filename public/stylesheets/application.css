@@ -1,12 +1,13 @@
 /*----- SIDE BAR -----*/
 
 .nav-bar {
-  /*position: absolute;*/
-  /*top: 0;*/
-  /*left: 0;*/
+  position: absolute;
+  top: 0;
+  left: 0;
+
   color: #fff;
-  /* width: 70px; */
-  width: 3%;
+  width: 70px; 
+  /*width: 3%;*/
   height: 100%;
   background-image: url('../../images/noisy_net.png');
   float: left;
@@ -14,7 +15,8 @@
 
 .nav-bar ul {
   list-style: none;
-  /*text-align: center;*/
+
+  text-align: center;
 }
 
 .nav-bar li {
@@ -26,11 +28,12 @@
 }
 
 .sub-menu{
-  /*position: absolute;*/
-  /*top: 0;*/
-  /*left: 0;*/
-  /*padding-left: 70px;*/
-  /*width: 230px;*/
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 70px;
+  width: 230px;
+
   float: left;
   width: 10%;
   height: 100%;
@@ -48,8 +51,10 @@
 /*----- POSTING BOARD ----*/
 .board-container {
   float: left;  
-  width: 95%;
   height: 100%;
+
+  position: relative;
+  margin-left: 300px;
 }
 
 /*----- POST IT -----*/
