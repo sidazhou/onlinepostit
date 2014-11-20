@@ -8,6 +8,7 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'sinatra-activerecord'
 
+gem 'font-awesome-less'
 gem 'puma'
 gem 'tux'
 

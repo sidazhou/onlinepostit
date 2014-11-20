@@ -1,0 +1,62 @@
+/*----- SIDE BAR -----*/
+
+.nav-bar {
+  color: #fff;
+  /* width: 70px; */
+  width: 3%;
+  height: 100%;
+  background-image: url('../../images/noisy_net.png');
+  float: left;
+}
+
+.nav-bar ul {
+  list-style: none;
+  margin-left: auto;
+  margin-right: auto;
+}
+.nav-bar li {
+  margin-top: 20px;
+}
+
+.clear {
+  clear: both;
+}
+
+.sub-menu{
+  float: left;
+  width: 10%;
+  height: 100%;
+  background-color: #eee;
+}
+
+.sub-menu ul {
+  list-style: none;
+}
+
+/* TEST SIDEBAR */
+.submenu{display:none;}
+
+/*----- POSTING BOARD ----*/
+.board-container {
+  float: left;  
+  width: 95%;
+  height: 100%;
+}
+
+/*----- POST IT -----*/
+
+.resize {
+  background-color: #29e;
+  color: white;
+  font-size: 20px;
+  font-family: sans-serif;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 20px;
+}
+
+.resize-container {
+  width: 240px;
+  height: 240px;
+}
