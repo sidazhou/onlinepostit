@@ -1,10 +1,30 @@
 # Homepage (Root path)
 get '/' do
-  erb :index
+  redirect "/#{generate_rand_str}"
 end
 
+
+
+# Testing ####################
+get '/test/history/view' do
+  # view cookie 
+  "#{cookies[:board_history]}; size: #{cookies[:board_history].length} ; class: #{cookies[:board_history].class}"
+end
+
+get '/test/history' do
+  append_cookies_board_history(generate_rand_str)
+
+  redirect '/test/history/view'
+end
+# Testing end ####################
+
+
+
 get '/:url' do
-  "#{params[:url]}"
+
+  append_cookies_board_history(params[:url]) # cookies[:board_history] is ready to use, which is a array of stings, from lest recent to most recent
+
+  erb :index
 end
 
 post '/:url/post/create' do
@@ -27,6 +47,5 @@ post '/:url/post/:id/sticker/:sticker_id/add' do
   # "#{params[:id]}"
   # "#{params[:sticker_id]}"
 end
-
 
 

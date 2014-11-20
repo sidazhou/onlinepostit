@@ -1,20 +1,50 @@
 <nav class="nav-bar">
-  <ul>
-    <li class="fa fa-plus-circle fa-3x"></li>
-    <li class="fa fa-cog fa-3x"></li>
+
+  <ul id="menu">
+    <a href="javascript: addNote();"><li class="fa fa-plus-circle fa-2x"></li></a>
+    <li id="settings" class="fa fa-cog fa-2x"></li>
   </ul>
-  
+<!-- changed id setting to class -->
 </nav>
 
+<!-- SUBMENU -->
+<aside class="sub-menu subMenu">
+  <ul id="submenu">
+    <!-- changed below to class -->
+    <li data-target="menuSticker" id="option-stickers">Stickers</li>
+    <li data-target="menuHistory" id="option-boards">My Boards</li>
+    <li data-target="menuNew" id="option-new">New Board</li>
+  </ul>
+</aside>
 
+<!-- STICKERS MENU-->
+<aside class="sub-menu sub-menu-content" id="menuSticker">
+  <span class="fa fa-angle-double-left"></span>
+  <h1>Stickers</h1>
+</aside>
+
+<!-- History MENU-->
+<aside class="sub-menu sub-menu-content" id="menuHistory">
+  <span class="fa fa-angle-double-left"></span>
+  <h1>Your sites</h1>
+</aside>
+
+
+
+
+
+<!-- POST BOARD -->
+
+<div class="board-container">
 
 <!-- TEST POST IT -->
-<div class="post-container">
   <div class="resize-container">
-      <div class="resize"
-           style="width: 200px; height: 200px">
+      <!-- <div class="resize"> -->
       </div>
   </div>
+
 </div>
 
+
+<!-- clear nav and board-container floats -->
 <div class="clear"></div>
