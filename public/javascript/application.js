@@ -22,7 +22,33 @@ $(document).ready(function() {
   $(function() {
       $('#settings').click(function(){
         $('.subMenu').slideToggle();
+        $('.sub-menu-content').hide();
+        // $(this).toggleClass('.subMenu');
       });
+
+      $('#submenu li').click(function(){
+        var target = $(this).attr('data-target');
+        console.log('showing menu content: '+target);
+        $('.subMenu').toggle();
+        $('#'+target).show();
+      });
+
   });
 
+
 });
+
+      // $('#option-stickers').click(function(){
+      //   $('.subMenu').remove();
+      //   $('.menuSticker').slideToggle();
+      // });
+
+  // $(function() {
+  //     $('.option-stickers').click(function(){
+  //       $('.subMenu').remove();
+  //       $(this).toggleClass('.menuSticker');
+  //     });
+  // });
+
+
+

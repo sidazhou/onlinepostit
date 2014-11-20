@@ -39,6 +39,8 @@ body {
   font-size: 100%; }
 
 body {
+  /*position: relative;*/
+  /*padding-left: 300px;*/
   background: white;
   background-image: url('../../images/cream_dust.png'); 
   color: #222222;

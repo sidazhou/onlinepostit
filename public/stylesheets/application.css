@@ -1,6 +1,9 @@
 /*----- SIDE BAR -----*/
 
 .nav-bar {
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: 0;*/
   color: #fff;
   /* width: 70px; */
   width: 3%;
@@ -11,9 +14,9 @@
 
 .nav-bar ul {
   list-style: none;
-  margin-left: auto;
-  margin-right: auto;
+  /*text-align: center;*/
 }
+
 .nav-bar li {
   margin-top: 20px;
 }
@@ -23,6 +26,11 @@
 }
 
 .sub-menu{
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  /*padding-left: 70px;*/
+  /*width: 230px;*/
   float: left;
   width: 10%;
   height: 100%;
@@ -34,7 +42,8 @@
 }
 
 /* TEST SIDEBAR */
-.subMenu{display:none;}
+.sub-menu-content{display:none;}
+.sunMenu{display:none;}
 
 /*----- POSTING BOARD ----*/
 .board-container {

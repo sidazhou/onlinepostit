@@ -1,28 +1,39 @@
 <nav class="nav-bar">
-<!--   <ul>
-    <li class="fa fa-plus-circle fa-2x"></li>
-    <li class="fa fa-cog fa-2x"></li>
-  </ul>
-  
- -->
-<!-- TEST --> 
+
   <ul id="menu">
     <li class="fa fa-plus-circle fa-2x"></li>
     <li id="settings" class="fa fa-cog fa-2x"></li>
-    <!-- <li class="submenu">Stickers</li>
-    <li class="submenu">My Boards</li>
-    <li class="submenu">New Board</li> -->
   </ul>
-
+<!-- changed id setting to class -->
 </nav>
 
+<!-- SUBMENU -->
 <aside class="sub-menu subMenu">
-  <ul id="menu-options">
-    <li>Stickers</li>
-    <li>My Boards</li>
-    <li>New Board</li>
+  <ul id="submenu">
+    <!-- changed below to class -->
+    <li data-target="menuSticker" id="option-stickers">Stickers</li>
+    <li data-target="menuHistory" id="option-boards">My Boards</li>
+    <li data-target="menuNew" id="option-new">New Board</li>
   </ul>
 </aside>
+
+<!-- STICKERS MENU-->
+<aside class="sub-menu sub-menu-content" id="menuSticker">
+  <span class="fa fa-angle-double-left"></span>
+  <h1>Stickers</h1>
+</aside>
+
+<!-- History MENU-->
+<aside class="sub-menu sub-menu-content" id="menuHistory">
+  <span class="fa fa-angle-double-left"></span>
+  <h1>Your sites</h1>
+</aside>
+
+
+
+
+
+
 
 
 <!-- TEST POST IT -->
