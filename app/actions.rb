@@ -1,10 +1,11 @@
 # Homepage (Root path)
 get '/' do
-  erb :index
+  redirect "/#{generate_rand_str}"
 end
 
 get '/:url' do
   "#{params[:url]}"
+  erb :index
 end
 
 post '/:url/post/create' do
