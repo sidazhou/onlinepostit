@@ -24,9 +24,14 @@ GEM
       slop (~> 3.6)
     coderay (1.1.0)
     columnize (0.8.9)
+    commonjs (0.2.7)
     debugger-linecache (1.2.0)
+    font-awesome-less (4.2.0)
+      less (~> 2.4.0)
     i18n (0.6.11)
     json (1.8.1)
+    less (2.4.0)
+      commonjs (~> 0.2.7)
     method_source (0.8.2)
     minitest (5.4.3)
     multi_json (1.10.1)
@@ -87,6 +92,7 @@ PLATFORMS
 
 DEPENDENCIES
   activesupport
+  font-awesome-less
   pg
   pry
   pry-byebug
