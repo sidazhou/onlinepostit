@@ -22,6 +22,9 @@
   clear: both;
 }
 
+/* TEST SIDEBAR */
+.submenu{display:none;}
+
 /*----- POSTING BOARD ----*/
 .board-container {
   float: left;  
