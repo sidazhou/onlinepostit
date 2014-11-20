@@ -3,7 +3,7 @@
 .nav-bar {
   color: #fff;
   /* width: 70px; */
-  width: 5%;
+  width: 3%;
   height: 100%;
   background-image: url('../../images/moulin.png');
   float: left;
@@ -11,6 +11,8 @@
 
 .nav-bar ul {
   list-style: none;
+  margin-left: auto;
+  margin-right: auto;
 }
 .nav-bar li {
   margin-top: 20px;
@@ -21,7 +23,7 @@
 }
 
 /*----- POSTING BOARD ----*/
-.post-container {
+.board-container {
   float: left;  
   width: 95%;
   height: 100%;
@@ -38,11 +40,6 @@
   box-sizing: border-box;
   padding: 20px;
   margin: 20px;
-
-  /* The width is set in the element's HTML
-   * so that it can be read by the resizing
-   * function
-   */
 }
 
 .resize-container {
