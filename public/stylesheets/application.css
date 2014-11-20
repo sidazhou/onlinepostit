@@ -1,5 +1,14 @@
 .nav-bar {
+  color: #fff;
   width: 70px;
   height: 100%;
   background-image: url('../../images/moulin.png');
+}
+
+.nav-bar li {
+  margin-top: 20px;
+}
+
+.add-button {
+
 }
