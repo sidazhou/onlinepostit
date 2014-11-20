@@ -6,6 +6,7 @@ require 'active_support/all'
 # Load Sinatra Framework (with AR)
 require 'sinatra'
 require 'sinatra/activerecord'
+require 'sinatra/cookies'
 
 if Sinatra::Application.development?
   require 'pry'
@@ -32,3 +33,4 @@ require APP_ROOT.join('config', 'database')
 require APP_ROOT.join('app', 'actions')
 
 require_relative '../lib/helpers'
+require 'json'
