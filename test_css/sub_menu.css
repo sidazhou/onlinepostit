@@ -35,6 +35,11 @@
   background-color: #363b41;
 }
 
+.sub-menu h1 {
+  font-family: 'Raleway', sans-serif;
+  color: #eee;
+}
+
 .sub-menu ul {
   color: #eee;
   list-style: none;
