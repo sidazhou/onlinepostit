@@ -4,6 +4,13 @@ function addNote(){
   $newNote.appendTo('.resize-container');
 };
 
+/* BLIND STICKER RE-GENERATION */
+
+function addSticker(){
+  var $newSticker = $('<img src="../../images/all-the-things.png">');
+  $newSticker.appendTo($(this).parent());
+}
+
   /* Post It Moveability */
 
 $(document).ready(function() {
