@@ -34,3 +34,16 @@ require APP_ROOT.join('app', 'actions')
 
 require_relative '../lib/helpers'
 require 'json'
+
+require 'factory_girl'
+require 'faker'
+
+require_relative '../app/factories/board'
+require_relative '../app/factories/post'
+require_relative '../app/factories/sticker'
+
+
+
+
+
+

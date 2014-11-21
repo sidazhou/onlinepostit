@@ -1,10 +1,16 @@
-helpers do
-  # http://stackoverflow.com/questions/88311/how-best-to-generate-a-random-string-in-ruby
+module Helpers
   def generate_rand_str
     length = 5 # characters
     rand(36**length).to_s(36)
   end
 
+end
+
+
+helpers do
+  # http://stackoverflow.com/questions/88311/how-best-to-generate-a-random-string-in-ruby
+  include Helpers
+    
   def append_cookies_board_history(str)
     # get history
     if cookies[:board_history]

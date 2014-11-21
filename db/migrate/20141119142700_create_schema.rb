@@ -9,10 +9,10 @@ class CreateSchema < ActiveRecord::Migration
     create_table :posts do |t|
       t.belongs_to :board
       t.text :content
-      t.float :x
-      t.float :y
-      t.float :width
-      t.float :height
+      t.integer :x
+      t.integer :y
+      t.integer :width
+      t.integer :height
       t.datetime :created_at
       t.datetime :updated_at
     end
@@ -20,11 +20,11 @@ class CreateSchema < ActiveRecord::Migration
     create_table :stickers do |t|
       # t.belongs_to :board, default: nil
       t.belongs_to :post, default: nil
-      t.integer :type
-      t.float :x
-      t.float :y
-      # t.float :width
-      # t.float :height
+      t.integer :sticker_type
+      t.integer :x
+      t.integer :y
+      # t.integer :width
+      # t.integer :height
       t.datetime :created_at
       t.datetime :updated_at
 
