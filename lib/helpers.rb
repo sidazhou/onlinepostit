@@ -30,3 +30,6 @@ helpers do
   end
   
 end
+
+
+# @temp = cookies[:board_history] #arr of str

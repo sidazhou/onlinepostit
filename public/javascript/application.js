@@ -71,17 +71,22 @@ interact('.draggable')
   /*  Navigation  */
 
   $(function() {
+
       $('#settings').click(function(){
-        $('.subMenu').slideToggle();
+        $('.subMenu').toggle();
         $('.sub-menu-content').hide();
         // $(this).toggleClass('.subMenu');
       });
 
       $('#submenu li').click(function(){
         var target = $(this).attr('data-target');
-        console.log('showing menu content: '+target);
         $('.subMenu').toggle();
         $('#'+target).show();
+      });
+
+      $('.back').click(function(){
+        $('.subMenu').show();
+        $(this).closest('.sub-menu').hide();
       });
 
   });
@@ -89,17 +94,5 @@ interact('.draggable')
 
 });
 
-      // $('#option-stickers').click(function(){
-      //   $('.subMenu').remove();
-      //   $('.menuSticker').slideToggle();
-      // });
-
-  // $(function() {
-  //     $('.option-stickers').click(function(){
-  //       $('.subMenu').remove();
-  //       $(this).toggleClass('.menuSticker');
-  //     });
-  // });
-
-
+/*     Moving Stickers      */
 
