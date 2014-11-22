@@ -1,6 +1,12 @@
+// Setting some defaults for posts
+var postX;
+var postY;
+var postHeight;
+var postWidth;
+
 //Adds new note to page when add tab is clicked
 function addNote(){
-  var $newNote = $('<div class="resize draggable" style="width: 200px; height: 200px;"></div>');
+  var $newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
   $newNote.appendTo('.resize-container');
 };
 
@@ -110,27 +116,57 @@ interact('.draggable')
 /*     PASS POST IT OBJECT VIA AJAX IN JASON      */
 
 
-  function send() {
-    var post = {
-      content: $("#id-name").val(),
-      x:$("$postX").val(),
-      y:$("$postY").val(),
-      width:$("$postHight").val(),
-      height:$("$postWidth").val(),
-    }
+  $(".post").on('blur', function() {
+      var post = {
+        content: $(this).text(),
+        x: postX,
+        y: postY,
+        width: postHeight,
+        height: postWidth
+      }
 
-    $('#target').html('sending..');
+      $.post('/post/'+id+'/update', {body: post}, function(data) {
+        if (data.result) {
+          post.css('z-index', 10);
+        }
+      }, 'json');
+        //{ body: post, { if (data.result) { post.css('z-index', 10) } }, 'json');
+    });
 
     $.ajax({
-      url: '/test/PersonSubmit',
+      url: '/user/create',
       type: 'post',
       dataType: 'json',
       success: function (data) {
         $('#target').html(data.msg);
       },
-      data: post
+      data: {
+        content: "",
+        x: postX,
+        y: postY,
+        width: postHeight,
+        height: postWidth
+      }
+
     });
 
-  }
-
 });
+
+
+    // $(".post").on('blur', function() {
+  //   var post = {
+  //       id = post.data('id') //what does this do?
+  //       content: $(".postContent").val(),
+  //       x:$("$postX").val(),
+  //       y:$("$postY").val(),
+  //       width:$("$postHight").val(),
+  //       height:$("$postWidth").val();
+  //     }
+
+  //   $.post('/post/'+id+'/update', {body: post.text()}, function(data) {
+  //     if (data.result) {
+  //       post.css('z-index', 10);
+  //     }
+  //   }, 'json');
+  // });
+
