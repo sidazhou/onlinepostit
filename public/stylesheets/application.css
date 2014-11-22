@@ -24,9 +24,13 @@
   clear: both;
 }
 
+.back {
+  color: #fff;
+}
+
 .sub-menu {
+  position: fixed;
   font-family: 'Raleway', sans-serif;sans-serif;
-  position: absolute;
   top: 0;
   left: 0;
   margin-left: 70px;
@@ -38,9 +42,17 @@
 }
 
 .sub-menu h1 {
-
+  font-size: 2em;
   font-family: 'Raleway', sans-serif;
   color: #eee;
+  text-align: center;
+}
+
+.sub-menu p {
+  font-size: 1em;
+  font-family: 'Raleway', sans-serif;
+  color: #eee;
+  padding-left: 15px;
 }
 
 .sub-menu ul {
@@ -102,7 +114,7 @@
 
  /* border: 1px solid darkgray;*/
   box-shadow: 10px 10px 5px #888888;
-  color: white;
+/*  color: white;*/
   font-size: 20px;
   font-family: sans-serif;
   box-sizing: border-box;
@@ -113,10 +125,10 @@
   height: 200px;
   position: absolute;
 
-  background-image: 
+  /*background-image: 
     linear-gradient(
       #FDF98C, #fdee72
-    );
+    );*/
 }
 
 .resize-container {

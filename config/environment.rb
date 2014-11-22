@@ -1,6 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
 require 'factory_girl'
+require 'json'
 
 require 'active_support/all'
 

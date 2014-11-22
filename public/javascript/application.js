@@ -1,10 +1,20 @@
+// Setting some defaults for posts
+var postX;
+var postY;
+var postHeight;
+var postWidth;
+
 //Adds new note to page when add tab is clicked
 function addNote(){
-  var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"></div>');
+  // var $newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
+  // var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
+  // $newNote.appendTo('.resize-container');
+
+  var $newNote = $('<textarea style="background-image: linear-gradient( #FDF98C, #fdee72); padding: 20px": width: 220px; height: 120px; class="draggable resize post"></textarea>');
   $newNote.appendTo('.resize-container');
 };
 
-/* BLIND STICKER RE-GENERATION */
+/* BLIND STICKER RE-GENERATION *
 
 function addSticker(){
   var $newSticker = $('<img src="../../images/all-the-things.png">');
@@ -15,6 +25,7 @@ function addSticker(){
 
 $(document).ready(function() {
     interact('.resize')
+    // interact('.resize')
     .resizable(true)
     .on('resizemove', function (event) {
       var target = event.target;
@@ -29,10 +40,10 @@ $(document).ready(function() {
       target.style.height = newHeight + 'px';
 
       //getting new width/height to sent in Ajax post
-      $postWidth = target.style.width  = newWidth + 'px';
-      $postHight = target.style.height = newHeight + 'px';
+      postWidth = target.style.width  = newWidth + 'px';
+      postHight = target.style.height = newHeight + 'px';
 
-      target.textContent = newWidth + '×' + newHeight;
+      // target.textContent = newWidth + '×' + newHeight;
     });
 
     // target elements with the "draggable" class
@@ -58,8 +69,8 @@ interact('.draggable')
             target.setAttribute('data-y', y);
 
             //getting new x, y position to sent in Ajax post
-            $postX = target.setAttribute('data-x', x);
-            $postY = target.setAttribute('data-y', y);
+            postX = target.setAttribute('data-x', x);
+            postY = target.setAttribute('data-y', y);
         },
         // call this function on every dragend event
         onend: function (event) {
@@ -112,27 +123,40 @@ interact('.draggable')
 /*     PASS POST IT OBJECT VIA AJAX IN JASON      */
 
 
-  function send() {
-    var post = {
-      content: $("#id-name").val(),
-      x:$("$postX").val(),
-      y:$("$postY").val(),
-      width:$("$postHight").val(),
-      height:$("$postWidth").val(),
-    }
+  $(".post").on('blur', function() {
+      var post = {
+        content: $(this).text(),
+        x: postX,
+        y: postY,
+        width: postHeight,
+        height: postWidth
+      }
 
-    $('#target').html('sending..');
+      $.post('/post/'+id+'/update', {body: post}, function(data) {
+        if (data.result) {
+          post.css('z-index', 10);
+        }
+      }, 'json');
+
+    });
 
     $.ajax({
-      url: '/test/PersonSubmit',
+      url: '/user/create',
       type: 'post',
       dataType: 'json',
       success: function (data) {
         $('#target').html(data.msg);
       },
-      data: post
+      data: {
+        content: "",
+        x: postX,
+        y: postY,
+        width: postHeight,
+        height: postWidth
+      }
+
     });
 
-  }
-
 });
+
+
