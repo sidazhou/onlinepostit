@@ -101,17 +101,15 @@
 
   position: relative;
   margin-left: 300px;
-  
 }
 
 /*----- POST IT -----*/
 
-.postit {
-
+.post::before {
+   content: url(../../images/add.png);
 }
 
 .resize {
-
  /* border: 1px solid darkgray;*/
   box-shadow: 10px 10px 5px #888888;
 /*  color: white;*/

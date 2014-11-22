@@ -1,8 +1,9 @@
 // Setting some defaults for posts
-var postX;
-var postY;
-var postHeight;
-var postWidth;
+// var postX;
+// var postY;
+// var postHeight;
+// var postWidth;
+
 
 //Adds new note to page when add tab is clicked
 function addNote(content,x,y,width,height){
@@ -13,13 +14,20 @@ function addNote(content,x,y,width,height){
   if(typeof(width)==='undefined') width = "220px";  //doesnt work
   if(typeof(height)==='undefined') height = "120px";//doesnt work
 
-
   // var $newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
   // var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
   // $newNote.appendTo('.resize-container');
 
-
-  var $newNote = $('<textarea style="background-image: linear-gradient( #FDF98C, #fdee72); margin-left: 310px; padding: 20px; width: ' + width + '; height: ' + height + ';" class="draggable resize post" >' + content + '</textarea>');
+  var $newNote = $('<textarea class="draggable resize post" >' + content + '</textarea>');
+  $newNote.css({
+    'background-image': 'linear-gradient( #FDF98C, #fdee72)',
+    'width': width,
+    'height': height,
+    'margin-left': '310px',
+    'padding': '20px',
+    'left': x,
+    'top': y
+  });
   $newNote.appendTo('.resize-container');
 };
 
@@ -56,6 +64,7 @@ $.ajax({
 
 
 $(document).ready(function() {
+
     interact('.resize')
     // interact('.resize')
     .resizable(true)
@@ -72,8 +81,8 @@ $(document).ready(function() {
       target.style.height = newHeight + 'px';
 
       //getting new width/height to sent in Ajax post
-      postWidth = target.style.width  = newWidth + 'px';
-      postHight = target.style.height = newHeight + 'px';
+      postWidth = newWidth + 'px';
+      postHight = newHeight + 'px';
 
       // target.textContent = newWidth + '×' + newHeight;
     });
@@ -101,8 +110,10 @@ interact('.draggable')
             target.setAttribute('data-y', y);
 
             //getting new x, y position to sent in Ajax post
-            postX = target.setAttribute('data-x', x);
-            postY = target.setAttribute('data-y', y);
+
+            // postX = x;
+            // postY = y;
+
         },
         // call this function on every dragend event
         onend: function (event) {
