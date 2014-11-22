@@ -98,6 +98,13 @@
 
 }
 
+textarea {
+   background: none;
+}
+
+
+
+
 .resize {
 
  /* border: 1px solid darkgray;*/
