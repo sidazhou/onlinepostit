@@ -6,7 +6,8 @@ var postWidth;
 
 //Adds new note to page when add tab is clicked
 function addNote(){
-  var $newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
+  // var $newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
+  var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"></div>');
   $newNote.appendTo('.resize-container');
 };
 
@@ -88,6 +89,8 @@ interact('.draggable')
 
     // allow more than one interaction at a time
     interact.maxInteractions(Infinity);
+
+    
 
   /*  Navigation  */
 
