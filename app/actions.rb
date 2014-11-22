@@ -28,11 +28,13 @@ get '/:url' do
 end
 
 get '/:url/post/get-all' do
-  begin
-    Board.find_by(url: params[:url]).posts.to_json
-  rescue
-    "[]"
-  end
+    board = Board.find_by(url: params[:url])
+    
+    if board
+      board.posts.to_json
+    else
+      "[]"
+    end
 end
 
 
