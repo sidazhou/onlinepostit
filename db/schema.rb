@@ -22,19 +22,19 @@ ActiveRecord::Schema.define(version: 20141119142700) do
   create_table "posts", force: true do |t|
     t.integer  "board_id"
     t.text     "content"
-    t.integer  "x"
-    t.integer  "y"
-    t.integer  "width"
-    t.integer  "height"
+    t.string   "x"
+    t.string   "y"
+    t.string   "width"
+    t.string   "height"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "stickers", force: true do |t|
     t.integer  "post_id"
-    t.integer  "sticker_type"
-    t.integer  "x"
-    t.integer  "y"
+    t.string   "sticker_type"
+    t.string   "x"
+    t.string   "y"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
