@@ -10,11 +10,11 @@ function addNote(){
   // var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
   // $newNote.appendTo('.resize-container');
 
-  var $newNote = $('<textarea style="background: yellow; padding: 20px" id="resize" class="draggable post"></textarea>');
+  var $newNote = $('<textarea style="background-image: linear-gradient( #FDF98C, #fdee72); padding: 20px": width: 220px; height: 120px; id="resize" class="draggable resize post"></textarea>');
   $newNote.appendTo('.resize-container');
 };
 
-/* BLIND STICKER RE-GENERATION */
+/* BLIND STICKER RE-GENERATION *
 
 function addSticker(){
   var $newSticker = $('<img src="../../images/all-the-things.png">');
@@ -24,7 +24,7 @@ function addSticker(){
   /* Post It Moveability */
 
 $(document).ready(function() {
-    interact('#resize')
+    interact('.resize')
     // interact('.resize')
     .resizable(true)
     .on('resizemove', function (event) {

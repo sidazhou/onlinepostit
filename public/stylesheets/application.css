@@ -98,18 +98,13 @@
 
 }
 
-textarea {
-   background: none;
-}
-
-
 
 
 .resize {
 
  /* border: 1px solid darkgray;*/
   box-shadow: 10px 10px 5px #888888;
-  color: white;
+/*  color: white;*/
   font-size: 20px;
   font-family: sans-serif;
   box-sizing: border-box;
@@ -120,10 +115,10 @@ textarea {
   height: 200px;
   position: absolute;
 
-  background-image: 
+  /*background-image: 
     linear-gradient(
       #FDF98C, #fdee72
-    );
+    );*/
 }
 
 .resize-container {
