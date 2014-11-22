@@ -1,6 +1,6 @@
 //Adds new note to page when add tab is clicked
 function addNote(){
-  var $newNote = $('<div class="resize draggable" style="width: 200px; height: 200px;"></div>');
+  var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"></div>');
   $newNote.appendTo('.resize-container');
 };
 
@@ -28,6 +28,10 @@ $(document).ready(function() {
       target.style.width  = newWidth + 'px';
       target.style.height = newHeight + 'px';
 
+      //getting new width/height to sent in Ajax post
+      $postWidth = target.style.width  = newWidth + 'px';
+      $postHight = target.style.height = newHeight + 'px';
+
       target.textContent = newWidth + '×' + newHeight;
     });
 
@@ -52,6 +56,10 @@ interact('.draggable')
             // update the posiion attributes
             target.setAttribute('data-x', x);
             target.setAttribute('data-y', y);
+
+            //getting new x, y position to sent in Ajax post
+            $postX = target.setAttribute('data-x', x);
+            $postY = target.setAttribute('data-y', y);
         },
         // call this function on every dragend event
         onend: function (event) {
@@ -74,6 +82,8 @@ interact('.draggable')
 
     // allow more than one interaction at a time
     interact.maxInteractions(Infinity);
+
+    
 
   /*  Navigation  */
 
@@ -99,7 +109,30 @@ interact('.draggable')
   });
 
 
+/*     PASS POST IT OBJECT VIA AJAX IN JASON      */
+
+
+  function send() {
+    var post = {
+      content: $("#id-name").val(),
+      x:$("$postX").val(),
+      y:$("$postY").val(),
+      width:$("$postHight").val(),
+      height:$("$postWidth").val(),
+    }
+
+    $('#target').html('sending..');
+
+    $.ajax({
+      url: '/test/PersonSubmit',
+      type: 'post',
+      dataType: 'json',
+      success: function (data) {
+        $('#target').html(data.msg);
+      },
+      data: post
+    });
+
+  }
+
 });
-
-/*     Moving Stickers      */
-
