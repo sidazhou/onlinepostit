@@ -33,7 +33,7 @@ function addSticker(){
 function postLoadAll(){
 $.ajax({
   type: "GET",
-    url: "/" + "TEST_TEST" + "/post/get-all"  /////////////////////////
+    url: window.location.pathname + "/post/get-all"  /////////////////////////
   })
     .done(function( msg ) {
 

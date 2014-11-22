@@ -28,7 +28,11 @@ get '/:url' do
 end
 
 get '/:url/post/get-all' do
-  Post.all.to_json
+  begin
+    Board.find_by(url: params[:url]).posts.to_json
+  rescue
+    "[]"
+  end
 end
 
 

@@ -1,9 +1,9 @@
 srand 1234 #global random seed
 
 # creating boards
-board1 = Board.create(url: generate_rand_str)
-board2 = Board.create(url: generate_rand_str)
-board3 = Board.create(url: generate_rand_str)
+board1 = Board.create(url: "url01")
+board2 = Board.create(url: "url02")
+board3 = Board.create(url: "url03")
 
 # creating posts
 5.times {
