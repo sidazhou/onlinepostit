@@ -5,12 +5,20 @@ var postHeight;
 var postWidth;
 
 //Adds new note to page when add tab is clicked
-function addNote(){
+function addNote(content,x,y,width,height){
+  // setting default values
+  if(typeof(content)==='undefined') content = "lorem ipsum";
+  if(typeof(x)==='undefined') x = "50px";  //not used 
+  if(typeof(y)==='undefined') y = "50px";  //not used
+  if(typeof(width)==='undefined') width = "220px";  //doesnt work
+  if(typeof(height)==='undefined') height = "120px";//doesnt work
+
+
   // var $newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
   // var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
   // $newNote.appendTo('.resize-container');
 
-  var $newNote = $('<textarea style="background-image: linear-gradient( #FDF98C, #fdee72); padding: 20px": width: 220px; height: 120px; class="draggable resize post"></textarea>');
+  var $newNote = $('<textarea style="background-image: linear-gradient( #FDF98C, #fdee72); padding: 20px; width: ' + width + '; height: ' + height + ';" class="draggable resize post" >' + content + '</textarea>');
   $newNote.appendTo('.resize-container');
 };
 
@@ -22,6 +30,29 @@ function addSticker(){
 }
 
   /* Post It Moveability */
+function postLoadAll(){
+$.ajax({
+  type: "GET",
+    url: "/" + "TEST_TEST" + "/post/get-all"  /////////////////////////
+  })
+    .done(function( msg ) {
+
+      // console.log(msg);
+      // console.log("===============");
+      // console.log(typeof msg);
+      // debugger;
+
+      obj = JSON.parse(msg);
+
+      for (var i = 0; i < obj.length; i++) {
+        // console.log(obj[i]);
+        addNote(obj[i]["content"],obj[i]["x"],obj[i]["y"],obj[i]["width"],obj[i]["height"]);
+      }
+
+
+    });
+};
+
 
 $(document).ready(function() {
     interact('.resize')
@@ -156,6 +187,8 @@ interact('.draggable')
       }
 
     });
+
+  postLoadAll(); // sd
 
 });
 

@@ -27,25 +27,30 @@ get '/:url' do
   erb :index
 end
 
-post '/:url/post/create' do
-  # "#{params[:url]}"
+get '/:url/post/get-all' do
+  Post.all.to_json
 end
 
 
-post '/:url/post/:id/update' do
-  # "#{params[:url]}"
-  # "#{params[:id]}"
-end
+# post '/:url/post/create' do
+#   # "#{params[:url]}"
+# end
 
-post '/:url/post/:id/delete' do
-  # "#{params[:url]}"
-  # "#{params[:id]}"
-end
 
-post '/:url/post/:id/sticker/:sticker_id/add' do
-  # "#{params[:url]}"
-  # "#{params[:id]}"
-  # "#{params[:sticker_id]}"
-end
+# post '/:url/post/:id/update' do
+#   # "#{params[:url]}"
+#   # "#{params[:id]}"
+# end
+
+# post '/:url/post/:id/delete' do
+#   # "#{params[:url]}"
+#   # "#{params[:id]}"
+# end
+
+# post '/:url/post/:id/sticker/:sticker_id/add' do
+#   # "#{params[:url]}"
+#   # "#{params[:id]}"
+#   # "#{params[:sticker_id]}"
+# end
 
 

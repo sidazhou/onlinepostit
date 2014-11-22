@@ -17,4 +17,4 @@ board3 = Board.create(url: generate_rand_str)
 last_post = FactoryGirl.create :post, board_id: board3.id
 
 # look there is a sticker on the last_post, on board3!
-Sticker.create(post_id: last_post.id, x: 0, y: 0, sticker_type: 0) # it's on the top left corner
+Sticker.create(post_id: last_post.id, x: '0px', y: '0px', sticker_type: '0') # it's on the top left corner
