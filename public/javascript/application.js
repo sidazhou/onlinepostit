@@ -10,7 +10,7 @@ function addNote(){
   // var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
   // $newNote.appendTo('.resize-container');
 
-  var $newNote = $('<textarea style="background-image: linear-gradient( #FDF98C, #fdee72); padding: 20px": width: 220px; height: 120px; class="draggable resize post"></textarea>');
+  var $newNote = $('<textarea style="background-image: linear-gradient( #FDF98C, #fdee72); padding: 20px; margin-left: 310px; width: 240px; height: 240px;" class="draggable resize post"></textarea>');
   $newNote.appendTo('.resize-container');
 };
 
