@@ -133,8 +133,10 @@
 }
 
 .resize-container {
-  width: 240px;
-  height: 240px;
+/*margin-left: 310px;*/
+padding-left: 310px;
+max-width: 1200px;
+height: 5000px;
 
 }
 

@@ -19,7 +19,7 @@ function addNote(content,x,y,width,height){
   // $newNote.appendTo('.resize-container');
 
 
-  var $newNote = $('<textarea style="background-image: linear-gradient( #FDF98C, #fdee72); padding: 20px; width: ' + width + '; height: ' + height + ';" class="draggable resize post" >' + content + '</textarea>');
+  var $newNote = $('<textarea style="background-image: linear-gradient( #FDF98C, #fdee72); margin-left: 310px; padding: 20px; width: ' + width + '; height: ' + height + ';" class="draggable resize post" >' + content + '</textarea>');
   $newNote.appendTo('.resize-container');
 };
 
@@ -117,11 +117,11 @@ interact('.draggable')
     // enable inertial throwing
     .inertia(true)
     // keep the element within the area of it's parent
-    // .restrict({
-    //     drag: "parent",
-    //     endOnly: true,
-    //     elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-    // });
+    .restrict({
+        drag: ".dropzone",
+        endOnly: true,
+        elementRect: { top: 0, left: 0, bottom: 0, right: 1 }
+    });
 
     // allow more than one interaction at a time
     interact.maxInteractions(Infinity);
