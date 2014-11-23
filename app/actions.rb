@@ -37,30 +37,25 @@ get '/:url/post/get-all' do
     end
 end
 
+post '/:url/post/create' do
+  board = Board.find_by(url: params[:url])
+  post = board.posts.create(content: params[:content], x: params[:x], y: params[:y], width: params[:width], height: params[:height]) 
+
+  post.id.to_s
+end
 
 post '/:url/post/update' do
   # puts "#{params[:url]}"
   # puts params[:width] # content, x, y, width, height
+  puts "THIS NEED DEBUGGING, FML" ####################################
+  post = Post.find(params[:id].to_i)
+  post.update(content: params[:content], x: params[:x], y: params[:y], width: params[:width], height: params[:height]) 
+  puts "THIS NEED DEBUGGING, END" ####################################  puts "THIS NEED DEBUGGING, END" ####################################
 
-  # Post.find(params[:id]).update(x: params[:x], y: params[:y], width: params[:width], height: params[:height]) 
 
 end
-
-
-# post '/:url/post/:id/update' do
-#   # "#{params[:url]}"
-#   # "#{params[:id]}"
-# end
 
 # post '/:url/post/:id/delete' do
 #   # "#{params[:url]}"
 #   # "#{params[:id]}"
 # end
-
-# post '/:url/post/:id/sticker/:sticker_id/add' do
-#   # "#{params[:url]}"
-#   # "#{params[:id]}"
-#   # "#{params[:sticker_id]}"
-# end
-
-

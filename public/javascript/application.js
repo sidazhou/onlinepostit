@@ -1,27 +1,24 @@
-// Setting some defaults for posts
-// var postX;
-// var postY;
-// var postHeight;
-// var postWidth;
-
+var newNote //global, i need this in addNoteToDB()
 
 //Adds new note to page when add tab is clicked
-function addNote(content,x,y,width,height){
+function addNote(id,content,x,y,width,height){  //addNote to the view
   // setting default values
   if(typeof(content)==='undefined') content = "lorem ipsum";
-  if(typeof(x)==='undefined') x = "50px";  //not used 
-  if(typeof(y)==='undefined') y = "50px";  //not used
+  if(typeof(x)==='undefined') x = "50px"; 
+  if(typeof(y)==='undefined') y = "50px";
 
   if(typeof(width)==='undefined') width = "220px";  
   if(typeof(height)==='undefined') height = "120px";
 
 
-  // var $newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
-  // var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
-  // $newNote.appendTo('.resize-container');
+  // var newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
+  // var newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
+  // newNote.appendTo('.resize-container');
 
-  var $newNote = $('<textarea class="draggable resize post" >' + content + '</textarea>');
-  $newNote.css({
+  newNote = $('<textarea id="sdAnchor" class="draggable resize post" >' + content + '</textarea>');
+  newNote[0].setAttribute('postId', id);
+
+  newNote.css({
     'background-image': 'linear-gradient( #FDF98C, #fdee72)',
     'width': width,
     'height': height,
@@ -30,8 +27,28 @@ function addNote(content,x,y,width,height){
     'left': x,
     'top': y
   });
-  $newNote.appendTo('.resize-container');
-};
+  newNote.appendTo('.resize-container');
+}
+
+function addNoteToDB(content,x,y,width,height) {  //addNote to the view
+    var postData = {
+      content: newNote.text(),
+      x: newNote.css("left"),
+      y: newNote.css("top"),
+      width: newNote.css("width"),
+      height: newNote.css("height")
+    };
+
+    $.ajax({
+      url: window.location.pathname + "/post/create",
+      type: 'POST',
+      data: postData,
+      success: function(id) {
+        newNote[0].setAttribute('postId', id);
+
+      }
+    }); 
+}
 
  /* BLIND STICKER RE-GENERATION */
 /*
@@ -44,16 +61,16 @@ function addSticker(){
 
 function bindPostListeners() {
   $(".post").on('blur', function(e) {
+// debugger;
     var postData = {
-      content: $(this).text(),
-      x: $(this).attr("left") + "px",
-      y: $(this).attr("top") + "px",
+      id: $(this).attr("postid"),
+      content: $(this).text(), //document.getElementById("txtArea").value; 
+      x: $(this).css("left"),
+      y: $(this).css("top"),
       width: $(this).css("width"),
       height: $(this).css("height")
     };
 
-
-      console.log("UPDATE not implemented");
       // console.log(this);
       // console.log(data);
 
@@ -64,7 +81,6 @@ function bindPostListeners() {
     });
   });
 } //end function
-
 
 
 
@@ -80,7 +96,7 @@ $.ajax({
 
       for (var i = 0; i < obj.length; i++) {
         // console.log(obj[i]);
-        addNote(obj[i]["content"],obj[i]["x"],obj[i]["y"],obj[i]["width"],obj[i]["height"]);
+        addNote(obj[i]["id"],obj[i]["content"],obj[i]["x"],obj[i]["y"],obj[i]["width"],obj[i]["height"]);
       }
 
       bindPostListeners();
