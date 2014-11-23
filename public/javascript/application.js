@@ -1,8 +1,9 @@
 // Setting some defaults for posts
-var postX;
-var postY;
-var postHeight;
-var postWidth;
+// var postX;
+// var postY;
+// var postHeight;
+// var postWidth;
+
 
 //Adds new note to page when add tab is clicked
 function addNote(content,x,y,width,height){
@@ -10,18 +11,29 @@ function addNote(content,x,y,width,height){
   if(typeof(content)==='undefined') content = "lorem ipsum";
   if(typeof(x)==='undefined') x = "50px";  //not used 
   if(typeof(y)==='undefined') y = "50px";  //not used
+
   if(typeof(width)==='undefined') width = "220px";  
   if(typeof(height)==='undefined') height = "120px";
+
 
   // var $newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
   // var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
   // $newNote.appendTo('.resize-container');
 
-  var $newNote = $('<textarea style="background-image: linear-gradient( #FDF98C, #fdee72); padding: 20px; width: ' + width + '; height: ' + height + ';" class="draggable resize post" >' + content + '</textarea>');
+  var $newNote = $('<textarea class="draggable resize post" >' + content + '</textarea>');
+  $newNote.css({
+    'background-image': 'linear-gradient( #FDF98C, #fdee72)',
+    'width': width,
+    'height': height,
+    'margin-left': '310px',
+    'padding': '20px',
+    'left': x,
+    'top': y
+  });
   $newNote.appendTo('.resize-container');
 };
 
-/* BLIND STICKER RE-GENERATION *
+ /* BLIND STICKER RE-GENERATION */
 
 function addSticker(){
   var $newSticker = $('<img src="../../images/all-the-things.png">');
@@ -77,6 +89,7 @@ $.ajax({
 
 
 $(document).ready(function() {
+
     interact('.resize')
 
     .resizable(true)
@@ -93,8 +106,8 @@ $(document).ready(function() {
       target.style.height = newHeight + 'px';
 
       //getting new width/height to sent in Ajax post
-      postWidth = target.style.width  = newWidth + 'px';
-      postHight = target.style.height = newHeight + 'px';
+      postWidth = newWidth + 'px';
+      postHight = newHeight + 'px';
 
       // target.textContent = newWidth + '×' + newHeight;
     });
@@ -122,8 +135,6 @@ interact('.draggable')
             target.setAttribute('data-y', y);
 
             //getting new x, y position to sent in Ajax post
-            postX = x;
-            postY = y;
         },
         // call this function on every dragend event
         onend: function (event) {
@@ -138,11 +149,11 @@ interact('.draggable')
     // enable inertial throwing
     .inertia(true)
     // keep the element within the area of it's parent
-    // .restrict({
-    //     drag: "parent",
-    //     endOnly: true,
-    //     elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
-    // });
+    .restrict({
+        drag: ".dropzone",
+        endOnly: true,
+        elementRect: { top: 0, left: 0, bottom: 0, right: 1 }
+    });
 
     // allow more than one interaction at a time
     interact.maxInteractions(Infinity);

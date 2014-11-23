@@ -101,17 +101,15 @@
 
   position: relative;
   margin-left: 300px;
-  
 }
 
 /*----- POST IT -----*/
 
-.postit {
-
+.post::before {
+   content: url(../../images/add.png);
 }
 
 .resize {
-
  /* border: 1px solid darkgray;*/
   box-shadow: 10px 10px 5px #888888;
 /*  color: white;*/
@@ -125,6 +123,7 @@
   height: 200px;
   position: absolute;
 
+
   /*background-image: 
     linear-gradient(
       #FDF98C, #fdee72
@@ -132,8 +131,11 @@
 }
 
 .resize-container {
-  width: 240px;
-  height: 240px;
+/*margin-left: 310px;*/
+padding-left: 310px;
+max-width: 1200px;
+height: 5000px;
+
 }
 
 /*  Move stickers  */
