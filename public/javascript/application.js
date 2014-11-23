@@ -34,7 +34,7 @@ function addNote(content,x,y,width,height){
 };
 
  /* BLIND STICKER RE-GENERATION */
-
+/*
 function addSticker(){
   var $newSticker = $('<img src="../../images/all-the-things.png">');
   $newSticker.appendTo($(this).parent());
@@ -53,7 +53,7 @@ function bindPostListeners() {
     };
 
 
-      alert("UPDATE not implemented");
+      console.log("UPDATE not implemented");
       // console.log(this);
       // console.log(data);
 
