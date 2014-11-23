@@ -35,17 +35,25 @@ function addNote(content,x,y,width,height){
     'left': x,
     'top': y
   });
+
   $newNote.appendTo('.resize-container');
   $('.post').elastic();
+
 };
 
  /* BLIND STICKER RE-GENERATION */
-/*
+
 function addSticker(){
-  var $newSticker = $('<img src="../../images/all-the-things.png">');
-  $newSticker.appendTo($(this).parent());
-}
-*/
+  $(this).clone().prependTo($(this));
+  // var $newSticker = $('<img src="../../images/all-the-things.png">');
+  // $newSticker.appendTo($(this));
+};
+
+// function addSticker(){
+//   var $newSticker = $('<img src="../../images/all-the-things.png">');
+//   $newSticker.appendTo($(this).parent());
+// };
+
 
 
 function bindPostListeners() {
@@ -168,24 +176,24 @@ interact('.draggable')
 
   /*  Navigation  */
   $('#settings').click(function(){
-    $('.subMenu').toggle();
+    $('#subMenu').toggle();
     $('.sub-menu-content').hide();
     // $(this).toggleClass('.subMenu');
   });
 
   $('#submenu li').click(function(){
     var target = $(this).attr('data-target');
-    $('.subMenu').toggle();
+    $('#subMenu').toggle();
     $('#'+target).show();
   });
 
   $('.back').click(function(){
-    $('.subMenu').show();
+    $('#subMenu').show();
     $(this).closest('.sub-menu').hide();
   });
 
 
-<<<<<<< HEAD
+
   // $(".post").on('blur', function() {
   //     var post = {
   //       content: $(this).text(),
@@ -219,13 +227,13 @@ interact('.draggable')
   //     }
 
   //   });
-=======
+
 
   // Load all posts from db, stickers not supported
   postLoadAll();
 
 
->>>>>>> 4eda72977368b76daef5bac0b8b5820835bc92b4
+
 
 
 }); // end document.ready
