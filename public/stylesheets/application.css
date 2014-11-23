@@ -48,6 +48,13 @@
   text-align: center;
 }
 
+.sub-menu h2 {
+  font-size: 1em;
+  font-family: 'Raleway', sans-serif;
+  color: #eee;
+  text-align: center;
+}
+
 .sub-menu p {
   font-size: 1em;
   font-family: 'Raleway', sans-serif;

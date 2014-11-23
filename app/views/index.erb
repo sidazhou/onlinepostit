@@ -107,9 +107,23 @@
 <aside class="sub-menu sub-menu-content" id="menuNew">
   <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p>
   <h1>Create a new board</h1>
+  <br>
+  <form action="/custom_url" method="POST">  
+    <div class="small-9 columns">
+      <label>
+        <input type="text" name="custom_url" placeholder=" Enter Anything and Go!" style="width: 122%"/>
+      </label>
+    </div>
+    <div class="small-3 columns">
+    <input type="submit" class="button postfix" value="Go">          
+    </div>    
+  </form>
+  <br>
   <ul>
-    
-  </ul>
+  <h2>Or</h2>
+  <div class="small-12 columns">
+    <a href="/" class="button expand [radius round]">Generate a Random Address and Go!</a>
+  </div>
 </aside>
 
 

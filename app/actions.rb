@@ -37,6 +37,10 @@ get '/:url/post/get-all' do
     end
 end
 
+post '/custom_url' do 
+  custom_url = params[:custom_url]
+  redirect "/#{custom_url}"
+end
 
 post '/:url/post/update' do
   # puts "#{params[:url]}"
