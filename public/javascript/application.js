@@ -1,12 +1,11 @@
 var newNote //global, i need this in addNoteToDB()
 
 //Adds new note to page when add tab is clicked
-function addNote(id,content,x,y,width,height){  //addNote to the view
+function addNote(id,content,x,y,width,height) {  //addNote to the view
   // setting default values
   if(typeof(content)==='undefined') content = "lorem ipsum";
   if(typeof(x)==='undefined') x = "50px"; 
   if(typeof(y)==='undefined') y = "50px";
-
   if(typeof(width)==='undefined') width = "220px";  
   if(typeof(height)==='undefined') height = "120px";
 
@@ -15,7 +14,7 @@ function addNote(id,content,x,y,width,height){  //addNote to the view
   // var newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
   // newNote.appendTo('.resize-container');
 
-  newNote = $('<textarea id="sdAnchor" class="draggable resize post" >' + content + '</textarea>');
+  newNote = $('<textarea class="draggable resize post" >' + content + '</textarea>');
   newNote[0].setAttribute('postId', id);
 
   newNote.css({
@@ -61,15 +60,15 @@ function addSticker(){
 
 function bindPostListeners() {
   $(".post").on('blur', function(e) {
-// debugger;
     var postData = {
       id: $(this).attr("postid"),
-      content: $(this).text(), //document.getElementById("txtArea").value; 
+      content: $(this).val(), //assuming $(this) refers to a textarea
       x: $(this).css("left"),
       y: $(this).css("top"),
       width: $(this).css("width"),
       height: $(this).css("height")
     };
+debugger;
 
       // console.log(this);
       // console.log(data);
