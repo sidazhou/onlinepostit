@@ -10,9 +10,8 @@ function addNote(content,x,y,width,height){
   if(typeof(content)==='undefined') content = "lorem ipsum";
   if(typeof(x)==='undefined') x = "50px";  //not used 
   if(typeof(y)==='undefined') y = "50px";  //not used
-  if(typeof(width)==='undefined') width = "220px";  //doesnt work
-  if(typeof(height)==='undefined') height = "120px";//doesnt work
-
+  if(typeof(width)==='undefined') width = "220px";  
+  if(typeof(height)==='undefined') height = "120px";
 
   // var $newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
   // var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
@@ -28,35 +27,58 @@ function addSticker(){
   var $newSticker = $('<img src="../../images/all-the-things.png">');
   $newSticker.appendTo($(this).parent());
 }
+*/
+
+
+function bindPostListeners() {
+  $(".post").on('blur', function(e) {
+    var postData = {
+      content: $(this).text(),
+      x: $(this).attr("left") + "px",
+      y: $(this).attr("top") + "px",
+      width: $(this).css("width"),
+      height: $(this).css("height")
+    };
+
+
+      alert("UPDATE not implemented");
+      // console.log(this);
+      // console.log(data);
+
+    $.ajax({
+      url: window.location.pathname + "/post/update",
+      type: 'POST',
+      data: postData
+    });
+  });
+} //end function
+
+
+
 
   /* Post It Moveability */
 function postLoadAll(){
 $.ajax({
   type: "GET",
-    url: window.location.pathname + "/post/get-all"  /////////////////////////
+    url: window.location.pathname + "/post/get-all"  
   })
     .done(function( msg ) {
-
-      // console.log(msg);
-      // console.log("===============");
-      // console.log(typeof msg);
-      // debugger;
-
       obj = JSON.parse(msg);
+      console.log('done loading posts');
 
       for (var i = 0; i < obj.length; i++) {
         // console.log(obj[i]);
         addNote(obj[i]["content"],obj[i]["x"],obj[i]["y"],obj[i]["width"],obj[i]["height"]);
       }
 
-
+      bindPostListeners();
     });
-};
+}
 
 
 $(document).ready(function() {
     interact('.resize')
-    // interact('.resize')
+
     .resizable(true)
     .on('resizemove', function (event) {
       var target = event.target;
@@ -100,8 +122,8 @@ interact('.draggable')
             target.setAttribute('data-y', y);
 
             //getting new x, y position to sent in Ajax post
-            postX = target.setAttribute('data-x', x);
-            postY = target.setAttribute('data-y', y);
+            postX = x;
+            postY = y;
         },
         // call this function on every dragend event
         onend: function (event) {
@@ -128,68 +150,31 @@ interact('.draggable')
     
 
   /*  Navigation  */
+  $('#settings').click(function(){
+    $('.subMenu').toggle();
+    $('.sub-menu-content').hide();
+    // $(this).toggleClass('.subMenu');
+  });
 
-  $(function() {
+  $('#submenu li').click(function(){
+    var target = $(this).attr('data-target');
+    $('.subMenu').toggle();
+    $('#'+target).show();
+  });
 
-      $('#settings').click(function(){
-        $('.subMenu').toggle();
-        $('.sub-menu-content').hide();
-        // $(this).toggleClass('.subMenu');
-      });
-
-      $('#submenu li').click(function(){
-        var target = $(this).attr('data-target');
-        $('.subMenu').toggle();
-        $('#'+target).show();
-      });
-
-      $('.back').click(function(){
-        $('.subMenu').show();
-        $(this).closest('.sub-menu').hide();
-      });
-
+  $('.back').click(function(){
+    $('.subMenu').show();
+    $(this).closest('.sub-menu').hide();
   });
 
 
-/*     PASS POST IT OBJECT VIA AJAX IN JASON      */
+
+  // Load all posts from db, stickers not supported
+  postLoadAll();
 
 
-  $(".post").on('blur', function() {
-      var post = {
-        content: $(this).text(),
-        x: postX,
-        y: postY,
-        width: postHeight,
-        height: postWidth
-      }
 
-      $.post('/post/'+id+'/update', {body: post}, function(data) {
-        if (data.result) {
-          post.css('z-index', 10);
-        }
-      }, 'json');
 
-    });
-
-    $.ajax({
-      url: '/user/create',
-      type: 'post',
-      dataType: 'json',
-      success: function (data) {
-        $('#target').html(data.msg);
-      },
-      data: {
-        content: "",
-        x: postX,
-        y: postY,
-        width: postHeight,
-        height: postWidth
-      }
-
-    });
-
-  postLoadAll(); // sd
-
-});
+}); // end document.ready
 
 

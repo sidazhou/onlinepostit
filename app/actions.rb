@@ -38,9 +38,13 @@ get '/:url/post/get-all' do
 end
 
 
-# post '/:url/post/create' do
-#   # "#{params[:url]}"
-# end
+post '/:url/post/update' do
+  # puts "#{params[:url]}"
+  # puts params[:width] # content, x, y, width, height
+
+  # Post.find(params[:id]).update(x: params[:x], y: params[:y], width: params[:width], height: params[:height]) 
+
+end
 
 
 # post '/:url/post/:id/update' do
