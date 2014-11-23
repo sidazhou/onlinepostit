@@ -28,17 +28,23 @@ get '/:url' do
 end
 
 get '/:url/post/get-all' do
-  begin
-    Board.find_by(url: params[:url]).posts.to_json
-  rescue
-    "[]"
-  end
+    board = Board.find_by(url: params[:url])
+    
+    if board
+      board.posts.to_json
+    else
+      "[]"
+    end
 end
 
 
-# post '/:url/post/create' do
-#   # "#{params[:url]}"
-# end
+post '/:url/post/update' do
+  # puts "#{params[:url]}"
+  # puts params[:width] # content, x, y, width, height
+
+  # Post.find(params[:id]).update(x: params[:x], y: params[:y], width: params[:width], height: params[:height]) 
+
+end
 
 
 # post '/:url/post/:id/update' do
