@@ -30,7 +30,7 @@
 
 .sub-menu {
   position: fixed;
-  font-family: 'Raleway', sans-serif;sans-serif;
+  font-family: 'Raleway', sans-serif;
   top: 0;
   left: 0;
   margin-left: 70px;
@@ -43,6 +43,13 @@
 
 .sub-menu h1 {
   font-size: 2em;
+  font-family: 'Raleway', sans-serif;
+  color: #eee;
+  text-align: center;
+}
+
+.sub-menu h2 {
+  font-size: 1em;
   font-family: 'Raleway', sans-serif;
   color: #eee;
   text-align: center;
@@ -90,7 +97,7 @@
 .sub-menu-content {
   display:none;
 }
-.subMenu {
+#subMenu {
   display:none;
 }
 
@@ -105,9 +112,6 @@
 
 /*----- POST IT -----*/
 
-.post::before {
-   content: url(../../images/add.png);
-}
 
 .resize {
  /* border: 1px solid darkgray;*/
@@ -137,5 +141,6 @@ max-width: 1200px;
 height: 5000px;
 
 }
+
 
 /*  Move stickers  */

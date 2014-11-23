@@ -1,5 +1,6 @@
 # Homepage (Root path)
 get '/' do
+
   redirect "/#{generate_rand_str}"
 end
 
@@ -22,6 +23,8 @@ end
 
 get '/:url' do
 
+  Board.create(url: params[:url]);
+  
   append_cookies_board_history(params[:url]) # cookies[:board_history] is ready to use, which is a array of stings, from lest recent to most recent
 
   erb :index
@@ -42,6 +45,11 @@ post '/:url/post/create' do
   post = board.posts.create(content: params[:content], x: params[:x], y: params[:y], width: params[:width], height: params[:height]) 
 
   post.id.to_s
+end
+
+post '/custom_url' do 
+  custom_url = params[:custom_url]
+  redirect "/#{custom_url}"
 end
 
 post '/:url/post/update' do

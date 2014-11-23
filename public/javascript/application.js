@@ -3,6 +3,7 @@ var newNote //global, i need this in addNoteToDB()
 //Adds new note to page when add tab is clicked
 function addNote(id,content,x,y,width,height) {  //addNote to the view
   // setting default values
+  
   if(typeof(content)==='undefined') content = "lorem ipsum";
   if(typeof(x)==='undefined') x = "50px"; 
   if(typeof(y)==='undefined') y = "50px";
@@ -14,19 +15,25 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
   // var newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
   // newNote.appendTo('.resize-container');
 
+  // var $newNote = $('<div contenteditable class="draggable resize post fa fa-times" >' + content + '</div>');
   newNote = $('<textarea class="draggable resize post" >' + content + '</textarea>');
   newNote[0].setAttribute('postId', id);
 
   newNote.css({
-    'background-image': 'linear-gradient( #FDF98C, #fdee72)',
+    // 'background-image': 'linear-gradient( #FDF98C, #fdee72)',
+    // 'background-image': 'url("../../images/add.png")',
+    'background': 'linear-gradient( #FDF98C, #fdee72)',
     'width': width,
+    'overflow': 'auto',
     'height': height,
     'margin-left': '310px',
     'padding': '20px',
     'left': x,
     'top': y
   });
+
   newNote.appendTo('.resize-container');
+  $('.post').elastic();
 }
 
 function addNoteToDB(content,x,y,width,height) {  //addNote to the view
@@ -50,12 +57,18 @@ function addNoteToDB(content,x,y,width,height) {  //addNote to the view
 }
 
  /* BLIND STICKER RE-GENERATION */
-/*
+
 function addSticker(){
-  var $newSticker = $('<img src="../../images/all-the-things.png">');
-  $newSticker.appendTo($(this).parent());
-}
-*/
+  $(this).clone().prependTo($(this));
+  // var $newSticker = $('<img src="../../images/all-the-things.png">');
+  // $newSticker.appendTo($(this));
+};
+
+// function addSticker(){
+//   var $newSticker = $('<img src="../../images/all-the-things.png">');
+//   $newSticker.appendTo($(this).parent());
+// };
+
 
 
 function bindPostListeners() {
@@ -68,10 +81,6 @@ function bindPostListeners() {
       width: $(this).css("width"),
       height: $(this).css("height")
     };
-debugger;
-
-      // console.log(this);
-      // console.log(data);
 
     $.ajax({
       url: window.location.pathname + "/post/update",
@@ -95,6 +104,7 @@ $.ajax({
 
       for (var i = 0; i < obj.length; i++) {
         // console.log(obj[i]);
+debugger;
         addNote(obj[i]["id"],obj[i]["content"],obj[i]["x"],obj[i]["y"],obj[i]["width"],obj[i]["height"]);
       }
 
@@ -177,19 +187,19 @@ interact('.draggable')
 
   /*  Navigation  */
   $('#settings').click(function(){
-    $('.subMenu').toggle();
+    $('#subMenu').toggle();
     $('.sub-menu-content').hide();
     // $(this).toggleClass('.subMenu');
   });
 
   $('#submenu li').click(function(){
     var target = $(this).attr('data-target');
-    $('.subMenu').toggle();
+    $('#subMenu').toggle();
     $('#'+target).show();
   });
 
   $('.back').click(function(){
-    $('.subMenu').show();
+    $('#subMenu').show();
     $(this).closest('.sub-menu').hide();
   });
 
