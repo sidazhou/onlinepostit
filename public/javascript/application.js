@@ -18,10 +18,15 @@ function addNote(content,x,y,width,height){
   // var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
   // $newNote.appendTo('.resize-container');
 
+
+// var $newNote = $('<div contenteditable class="draggable resize post fa fa-times" >' + content + '</div>');
   var $newNote = $('<textarea class="draggable resize post" >' + content + '</textarea>');
   $newNote.css({
-    'background-image': 'linear-gradient( #FDF98C, #fdee72)',
+    // 'background-image': 'linear-gradient( #FDF98C, #fdee72)',
+    // 'background-image': 'url("../../images/add.png")',
+    'background': 'linear-gradient( #FDF98C, #fdee72)',
     'width': width,
+    'overflow': 'auto',
     'height': height,
     'margin-left': '310px',
     'padding': '20px',
@@ -29,6 +34,7 @@ function addNote(content,x,y,width,height){
     'top': y
   });
   $newNote.appendTo('.resize-container');
+  $('.post').elastic();
 };
 
  /* BLIND STICKER RE-GENERATION */
@@ -166,39 +172,39 @@ interact('.draggable')
 /*     PASS POST IT OBJECT VIA AJAX IN JASON      */
 
 
-  $(".post").on('blur', function() {
-      var post = {
-        content: $(this).text(),
-        x: postX,
-        y: postY,
-        width: postHeight,
-        height: postWidth
-      }
+  // $(".post").on('blur', function() {
+  //     var post = {
+  //       content: $(this).text(),
+  //       x: postX,
+  //       y: postY,
+  //       width: postHeight,
+  //       height: postWidth
+  //     }
 
-      $.post('/post/'+id+'/update', {body: post}, function(data) {
-        if (data.result) {
-          post.css('z-index', 10);
-        }
-      }, 'json');
+  //     $.post('/post/'+id+'/update', {body: post}, function(data) {
+  //       if (data.result) {
+  //         post.css('z-index', 10);
+  //       }
+  //     }, 'json');
 
-    });
+  //   });
 
-    $.ajax({
-      url: '/user/create',
-      type: 'post',
-      dataType: 'json',
-      success: function (data) {
-        $('#target').html(data.msg);
-      },
-      data: {
-        content: "",
-        x: postX,
-        y: postY,
-        width: postHeight,
-        height: postWidth
-      }
+  //   $.ajax({
+  //     url: '/user/create',
+  //     type: 'post',
+  //     dataType: 'json',
+  //     success: function (data) {
+  //       $('#target').html(data.msg);
+  //     },
+  //     data: {
+  //       content: "",
+  //       x: postX,
+  //       y: postY,
+  //       width: postHeight,
+  //       height: postWidth
+  //     }
 
-    });
+  //   });
 
   postLoadAll(); // sd
 

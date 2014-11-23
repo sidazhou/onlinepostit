@@ -105,8 +105,12 @@
 
 /*----- POST IT -----*/
 
-.post::before {
+/*p :before {
    content: url(../../images/add.png);
+}*/
+
+textarea {
+  overflow: auto;
 }
 
 .resize {
