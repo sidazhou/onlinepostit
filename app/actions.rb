@@ -1,3 +1,4 @@
+
 # Homepage (Root path)
 get '/' do
   redirect "/#{generate_rand_str}"
@@ -13,7 +14,6 @@ end
 
 get '/test/history' do
   append_cookies_board_history(generate_rand_str)
-
   redirect '/test/history/view'
 end
 # Testing end ####################
@@ -23,6 +23,8 @@ end
 get '/:url' do
 
   append_cookies_board_history(params[:url]) # cookies[:board_history] is ready to use, which is a array of stings, from lest recent to most recent
+
+  @board_history = cookies[:board_history]
 
   erb :index
 end
@@ -37,10 +39,19 @@ get '/:url/post/get-all' do
     end
 end
 
-post '/custom_url' do 
+#Custom page generate and redirect
+post '/goto/custom_url' do 
   custom_url = params[:custom_url]
   redirect "/#{custom_url}"
 end
+
+# #redirect to url in history
+# post 'goto/board_history_url' do
+#   board_history_url = 
+#   redirect "/#{board_history_url"}
+# end
+
+
 
 post '/:url/post/update' do
   # puts "#{params[:url]}"

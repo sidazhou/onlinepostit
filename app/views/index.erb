@@ -100,15 +100,22 @@
 <aside class="sub-menu sub-menu-content" id="menuHistory">
   <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p>
   <h1>My boards</h1>
-  <ul data-target="boards-history"></ul>
-</aside>
+  <ul>
+  <%# if !@board_history.empty? %>
+    <%# @board_history.each do |address| %>
+      <li><%#= address %></li>
+    <%# end %>
+  <%# end %>
+  </ul>  
+  <ul data-target="board_history"></ul>
+</aside> 
 
 <!-- NEW BOARD MENU-->
 <aside class="sub-menu sub-menu-content" id="menuNew">
   <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p>
-  <h1>Create a new board</h1>
+  <h1>Go to a New Board</h1>
   <br>
-  <form action="/custom_url" method="POST">  
+  <form action="/goto/custom_url" method="POST">  
     <div class="small-9 columns">
       <label>
         <input type="text" name="custom_url" placeholder=" Enter Anything and Go!" style="width: 122%"/>
@@ -122,7 +129,7 @@
   <ul>
   <h2>Or</h2>
   <div class="small-12 columns">
-    <a href="/" class="button expand [radius round]">Generate a Random Address and Go!</a>
+    <a href="/" class="button expand [radius round]">Generate a Random Board and Go!</a>
   </div>
 </aside>
 
@@ -142,3 +149,5 @@
 
 <!-- clear nav and board-container floats -->
 <div class="clear"></div>
+
+

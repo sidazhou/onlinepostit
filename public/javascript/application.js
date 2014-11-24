@@ -192,6 +192,14 @@ interact('.draggable')
     $(this).closest('.sub-menu').hide();
   });
 
+  $('#option-boards').bind('click', function (event) {
+    
+    //clear the existing HTML
+    //parse the JSON cookie 
+    //for each entry in the cookie, create a DOM element and attach to the
+    //html list
+  });
+
 
 
   // $(".post").on('blur', function() {
