@@ -29,6 +29,11 @@ helpers do
     response.set_cookie "board_history", arr.to_json
   end
   
+  def fu_hack(str,val) # str="30px", val="10px"
+    str.slice! ("px") #remove px
+    val.slice! ("px") #remove px
+    ( str.to_i - val.to_i ).to_s + "px" #return reduced px
+  end
 end
 
 

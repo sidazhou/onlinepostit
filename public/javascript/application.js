@@ -3,9 +3,9 @@ var newNote //global, i need this in addNoteToDB()
 //Adds new note to page when add tab is clicked
 function addNote(id,content,x,y,width,height) {  //addNote to the view
   // setting default values
-  
+
   if(typeof(content)==='undefined') content = "lorem ipsum";
-  if(typeof(x)==='undefined') x = "50px"; 
+  if(typeof(x)==='undefined') x = "150px"; 
   if(typeof(y)==='undefined') y = "50px";
   if(typeof(width)==='undefined') width = "220px";  
   if(typeof(height)==='undefined') height = "120px";
@@ -26,8 +26,6 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
     'width': width,
     'overflow': 'auto',
     'height': height,
-    'margin-left': '310px',
-    'padding': '20px',
     'left': x,
     'top': y
   });
@@ -39,8 +37,8 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
 function addNoteToDB(content,x,y,width,height) {  //addNote to the view
     var postData = {
       content: newNote.text(),
-      x: newNote.css("left"),
-      y: newNote.css("top"),
+      x: newNote.offset()["left"] + "px",
+      y: newNote.offset()["top"] + "px",
       width: newNote.css("width"),
       height: newNote.css("height")
     };
@@ -76,12 +74,12 @@ function bindPostListeners() {
     var postData = {
       id: $(this).attr("postid"),
       content: $(this).val(), //assuming $(this) refers to a textarea
-      x: $(this).css("left"),
-      y: $(this).css("top"),
+      x: $(this).offset()["left"] + "px", //$(this).css("left") doesnt work, css is too raw, not updated
+      y: $(this).offset()["top"] + "px",
       width: $(this).css("width"),
       height: $(this).css("height")
     };
-
+// debugger;
     $.ajax({
       url: window.location.pathname + "/post/update",
       type: 'POST',
@@ -104,7 +102,6 @@ $.ajax({
 
       for (var i = 0; i < obj.length; i++) {
         // console.log(obj[i]);
-debugger;
         addNote(obj[i]["id"],obj[i]["content"],obj[i]["x"],obj[i]["y"],obj[i]["width"],obj[i]["height"]);
       }
 
