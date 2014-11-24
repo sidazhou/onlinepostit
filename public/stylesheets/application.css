@@ -1,3 +1,15 @@
+/* Default Link Styles */
+a {
+  color: #24F767;
+  text-decoration: none;
+  line-height: inherit; }
+  a:hover, a:focus {
+    color: #0FAD41; }
+  a img {
+    border: none; }
+
+
+
 /*----- SIDE BAR -----*/
 
 .nav-bar {

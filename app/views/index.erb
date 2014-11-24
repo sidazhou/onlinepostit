@@ -26,6 +26,13 @@
     <li>
       <div class="draggable">
         <a href="javascript: addSticker();" >
+          <img src="../../images/don_thumbs_up.png" >
+        </a>
+      <div>
+    </li>
+    <li>
+      <div class="draggable">
+        <a href="javascript: addSticker();" >
           <img src="../../images/patrick.png" >
         </a>
       <div>
@@ -102,8 +109,8 @@
   <h1>My boards</h1>
   <ul>
   <% if !@board_history.empty? %>
-    <% @board_history.each do |address| %>
-      <li><%= address %></li>
+    <% @board_history.reverse_each do |address| %>
+      <li><a href=<%= address %>><h2><%= address %></h2></a></li>
     <% end %>
   <% end %>
   </ul>  
