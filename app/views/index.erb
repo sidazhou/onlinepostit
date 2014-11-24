@@ -101,11 +101,11 @@
   <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p>
   <h1>My boards</h1>
   <ul>
-  <%# if !@board_history.empty? %>
-    <%# @board_history.each do |address| %>
-      <li><%#= address %></li>
-    <%# end %>
-  <%# end %>
+  <% if !@board_history.empty? %>
+    <% @board_history.each do |address| %>
+      <li><%= address %></li>
+    <% end %>
+  <% end %>
   </ul>  
   <ul data-target="board_history"></ul>
 </aside> 
