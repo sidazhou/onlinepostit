@@ -28,7 +28,17 @@ helpers do
     # set history
     response.set_cookie "board_history", arr.to_json
   end
-   
+
+  
+  def fu_hack(str,val) # str="30px", val="10px"
+    if str.nil? # || val.nil?
+      return str
+    end
+    str = str[0..-3].to_i #remove px
+    val = val[0..-3].to_i #remove px
+    output_str = (str-val).to_s + "px" #return reduced px
+    output_str
+  end
 end
 
 
