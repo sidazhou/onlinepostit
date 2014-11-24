@@ -22,8 +22,11 @@ end
 
 
 get '/:url' do
+  board = Board.find_by(url: params[:url])
 
-  Board.create(url: params[:url]);
+  unless board # check if exist
+    Board.create(url: params[:url])
+  end
 
   append_cookies_board_history(params[:url]) # cookies[:board_history] is ready to use, which is a array of stings, from lest recent to most recent
 
