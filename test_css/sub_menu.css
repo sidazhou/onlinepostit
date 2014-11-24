@@ -1,0 +1,72 @@
+/*----- SIDE BAR -----*/
+
+.nav-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #fff;
+  width: 70px; 
+  height: 100%;
+  background-image: url('../../images/noisy_net.png');
+  float: left;
+}
+
+.nav-bar ul {
+  list-style: none;
+}
+
+.nav-bar li {
+  margin-top: 20px;
+}
+
+.clear {
+  clear: both;
+}
+
+.sub-menu {
+  font-family: 'Raleway', sans-serif;sans-serif;
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: 70px;
+  width: 230px;
+  float: left;
+  height: 100%;
+  background-color: #363b41;
+}
+
+.sub-menu h1 {
+  font-family: 'Raleway', sans-serif;
+  color: #eee;
+}
+
+.sub-menu ul {
+  color: #eee;
+  list-style: none;
+  padding-top: 30px;
+  font-size: 1.5em;
+  padding-left: 0;
+}
+
+.sub-menu li {
+  line-height:  1.5em;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border: 1px solid #3b4148;
+}
+
+.sub-menu li:hover {
+  line-height:  1.5em;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border: 1px solid #363b41;
+  background-color: #3b4148;
+}
+
+

@@ -1,14 +1,14 @@
 <nav class="nav-bar">
 
   <ul id="menu">
-    <a href="javascript: addNote();"><li class="fa fa-plus-circle fa-2x"></li></a>
+    <a href="javascript: addNote();bindPostListeners();addNoteToDB();"><li class="fa fa-plus-circle fa-2x"></li></a>
     <li id="settings" class="fa fa-cog fa-2x"></li>
   </ul>
 <!-- changed id setting to class -->
 </nav>
 
 <!-- SUBMENU -->
-<aside class="sub-menu subMenu">
+<aside class="sub-menu" id="subMenu">
   <ul id="submenu">
     <!-- changed below to class -->
     <li data-target="menuSticker" id="option-stickers">Stickers</li>
@@ -18,29 +18,123 @@
 </aside>
 
 <!-- STICKERS MENU-->
+
 <aside class="sub-menu sub-menu-content" id="menuSticker">
-  <span class="fa fa-angle-double-left"></span>
+  <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p>
   <h1>Stickers</h1>
+  <ul>
+    <li>
+      <div class="draggable">
+        <a href="javascript: addSticker();" >
+          <img src="../../images/patrick.png" >
+        </a>
+      <div>
+    </li>
+    <li>
+      <div class="draggable">
+        <a href="javascript: addSticker();" >
+          <img src="../../images/all-the-things.png" >
+        </a>
+      </div>
+    </li>
+    <li>
+      <div class="draggable">
+        <a href="javascript: addSticker();" >
+          <img src="../../images/done.png" >
+        </a>
+      </div>
+    </li>
+    <li>
+      <div class="draggable">
+        <a href="javascript: addSticker();" >
+          <img src="../../images/funny.png" >
+        </a>
+      </div>
+    </li>
+    <li>
+      <div class="draggable">
+        <a href="javascript: addSticker();" >
+          <img src="../../images/patrick.png" >
+        </a>
+      </div>
+    </li>
+    <li>
+      <div class="draggable">
+        <a href="javascript: addSticker();" >
+          <img src="../../images/done.png" >
+        </a>
+      </div>
+    </li>
+    <li>
+      <div class="draggable">
+        <a href="javascript: addSticker();" >
+          <img src="../../images/all-the-things.png" >
+        </a>
+      </div>
+    </li>
+    <li>
+      <div class="draggable">
+        <a href="javascript: addSticker();" >
+          <img src="../../images/all-the-things.png" >
+        </a>
+      </div>
+    </li>
+  </ul>
 </aside>
+
+<!-- <aside class="sub-menu sub-menu-content" id="menuSticker">
+  <span class="fa fa-angle-double-left fa-2x back"></span><h1>Stickers</h1>
+  <ul>
+    <li class="draggable"><a href="javascript: addSticker();" ><img src="../../images/patrick.png" ></a></li>
+    <li class="draggable"><img src="../../images/all-the-things.png" alt=""></li>
+    <li class="draggable"><img src="../../images/done.png" alt=""></li>
+    <li class="draggable"><img src="../../images/funny.png" alt=""></li>
+    <li class="draggable"><img src="../../images/patrick.png" ></li>
+    <li class="draggable"><img src="../../images/done.png" alt=""></li>
+    <li class="draggable"><img src="../../images/all-the-things.png" alt=""></li>
+    <li class="draggable"><img src="../../images/all-the-things.png" alt=""></li>
+  </ul>
+</aside> -->
 
 <!-- History MENU-->
 <aside class="sub-menu sub-menu-content" id="menuHistory">
-  <span class="fa fa-angle-double-left"></span>
-  <h1>Your sites</h1>
+  <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p>
+  <h1>My boards</h1>
+  <ul data-target="boards-history"></ul>
+</aside>
+
+<!-- NEW BOARD MENU-->
+<aside class="sub-menu sub-menu-content" id="menuNew">
+  <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p>
+  <h1>Create a new board</h1>
+  <br>
+  <form action="/custom_url" method="POST">  
+    <div class="small-9 columns">
+      <label>
+        <input type="text" name="custom_url" placeholder=" Enter Anything and Go!" style="width: 122%"/>
+      </label>
+    </div>
+    <div class="small-3 columns">
+    <input type="submit" class="button postfix" value="Go">          
+    </div>    
+  </form>
+  <br>
+  <ul>
+  <h2>Or</h2>
+  <div class="small-12 columns">
+    <a href="/" class="button expand [radius round]">Generate a Random Address and Go!</a>
+  </div>
 </aside>
 
 
 
 
-
-<!-- POST BOARD -->
-
-<div class="board-container">
+<div id="inner-dropzone" class="dropzone">
 
 <!-- TEST POST IT -->
   <div class="resize-container">
-      <!-- <div class="resize"> -->
-      </div>
+      <!-- <div class="resize">
+      </div> -->
   </div>
 
 </div>

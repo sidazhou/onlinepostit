@@ -7,7 +7,7 @@ Modified by Sida
 ## Getting Started
 
 1. `bundle install`
-2. `rake db:drop; rake db:create; rake db:migrate;`
+2. `rake db:drop; rake db:create; rake db:migrate; rake db:seed;`
 3. `shotgun -p 3000 -o 0.0.0.0`
 4. Visit `http://localhost:3000/` in your browser
 
@@ -17,6 +17,8 @@ Modified by Sida
 
 - remove all rake tasks
 - remove `require APP_ROOT.join('config', 'database')` from environment.rb
+
+=============
 
 ## Contributors
 

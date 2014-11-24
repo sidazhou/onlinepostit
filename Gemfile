@@ -11,12 +11,15 @@ gem 'sinatra-activerecord'
 gem 'font-awesome-less'
 gem 'puma'
 gem 'tux'
+gem 'factory_girl'
+gem 'faker'
 
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
   gem 'shotgun'
   gem 'sqlite3'
+
 end
 
 group :production do

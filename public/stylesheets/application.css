@@ -1,22 +1,19 @@
 /*----- SIDE BAR -----*/
 
 .nav-bar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
-
   color: #fff;
   width: 70px; 
-  /*width: 3%;*/
   height: 100%;
   background-image: url('../../images/noisy_net.png');
   float: left;
+  z-index: 100000;
 }
 
 .nav-bar ul {
   list-style: none;
-
-  text-align: center;
 }
 
 .nav-bar li {
@@ -27,26 +24,82 @@
   clear: both;
 }
 
-.sub-menu{
-  position: absolute;
+.back {
+  color: #fff;
+}
+
+.sub-menu {
+  position: fixed;
+  font-family: 'Raleway', sans-serif;
   top: 0;
   left: 0;
   margin-left: 70px;
   width: 230px;
-
   float: left;
-  width: 10%;
   height: 100%;
-  background-color: #eee;
+  background-color: #363b41;
+  padding-left: 0;
+}
+
+.sub-menu h1 {
+  font-size: 2em;
+  font-family: 'Raleway', sans-serif;
+  color: #eee;
+  text-align: center;
+}
+
+.sub-menu h2 {
+  font-size: 1em;
+  font-family: 'Raleway', sans-serif;
+  color: #eee;
+  text-align: center;
+}
+
+.sub-menu p {
+  font-size: 1em;
+  font-family: 'Raleway', sans-serif;
+  color: #eee;
+  padding-left: 15px;
 }
 
 .sub-menu ul {
+  color: #eee;
   list-style: none;
+  padding-top: 30px;
+  font-size: 1.5em;
+  padding-left: 0;
+  margin: 0;
 }
 
-/* TEST SIDEBAR */
-.sub-menu-content{display:none;}
-.sunMenu{display:none;}
+.sub-menu li {
+  line-height:  1.5em;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border: 1px solid #3b4148;
+}
+
+.sub-menu li:hover {
+  line-height:  1.5em;
+  padding-left: 0;
+  padding-right: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  border: 1px solid #363b41;
+  background-color: #3b4148;
+}
+
+
+/* HIDDEN SIDEBAR */
+.sub-menu-content {
+  display:none;
+}
+#subMenu {
+  display:none;
+}
 
 /*----- POSTING BOARD ----*/
 .board-container {
@@ -59,18 +112,35 @@
 
 /*----- POST IT -----*/
 
+
 .resize {
-  background-color: gold;
-  color: white;
+ /* border: 1px solid darkgray;*/
+  box-shadow: 10px 10px 5px #888888;
+/*  color: white;*/
   font-size: 20px;
   font-family: sans-serif;
-  border-radius: 8px;
   box-sizing: border-box;
   padding: 20px;
   margin: 20px;
+  box-shadow: 0 0 .3em #656565;
+  width: 200px; 
+  height: 200px;
+  position: absolute;
+
+
+  /*background-image: 
+    linear-gradient(
+      #FDF98C, #fdee72
+    );*/
 }
 
 .resize-container {
-  width: 240px;
-  height: 240px;
+/*margin-left: 310px;*/
+padding-left: 310px;
+max-width: 1200px;
+height: 5000px;
+
 }
+
+
+/*  Move stickers  */
