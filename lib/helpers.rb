@@ -30,9 +30,13 @@ helpers do
   end
   
   def fu_hack(str,val) # str="30px", val="10px"
-    str.slice! ("px") #remove px
-    val.slice! ("px") #remove px
-    ( str.to_i - val.to_i ).to_s + "px" #return reduced px
+    if str.nil? # || val.nil?
+      return str
+    end
+    str = str[0..-3].to_i #remove px
+    val = val[0..-3].to_i #remove px
+    output_str = (str-val).to_s + "px" #return reduced px
+    output_str
   end
 end
 
