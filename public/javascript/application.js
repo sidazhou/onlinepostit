@@ -1,10 +1,16 @@
-var newNote //global, i need this in addNoteToDB()
+
+var newNote; //global, i need this in addNoteToDB()
+
+
+function resizeParent() {
+  $(this).parent.height()
+}
 
 //Adds new note to page when add tab is clicked
 function addNote(id,content,x,y,width,height) {  //addNote to the view
   // setting default values
 
-  if(typeof(content)==='undefined') content = "lorem ipsum";
+  if(typeof(content)==='undefined') content = "";
   if(typeof(x)==='undefined') x = "150px"; 
   if(typeof(y)==='undefined') y = "50px";
   if(typeof(width)==='undefined') width = "220px";  
@@ -16,12 +22,10 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
   // newNote.appendTo('.resize-container');
 
   // var $newNote = $('<div contenteditable class="draggable resize post fa fa-times" >' + content + '</div>');
-  newNote = $('<textarea class="draggable resize post" >' + content + '</textarea>');
+  newNote = $('<div class="draggable resize post" ><a href="javascript: ;" class="delete" ><img src="../../images/exit.png" ></a><textarea >' + content + '</textarea></div>');
   newNote[0].setAttribute('postId', id);
 
   newNote.css({
-    // 'background-image': 'linear-gradient( #FDF98C, #fdee72)',
-    // 'background-image': 'url("../../images/add.png")',
     'background': 'linear-gradient( #FDF98C, #fdee72)',
     'width': width,
     'overflow': 'auto',
@@ -30,9 +34,19 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
     'top': y
   });
 
+
   newNote.appendTo('.resize-container');
-  $('.post').elastic();
+  // $('textarea', newNote).autosize({
+  //   callback: resizeParent
+  // });
+
+  // $('textarea', newNote).on('change', function() {
+  //   console.log('working!');
+  // });
+  // $('.post textarea').elastic();
+
 }
+
 
 function addNoteToDB(content,x,y,width,height) {  //addNote to the view
     var postData = {
@@ -54,13 +68,18 @@ function addNoteToDB(content,x,y,width,height) {  //addNote to the view
     }); 
 }
 
+function exit(){
+  $(this).parent().remove();
+}
+
  /* BLIND STICKER RE-GENERATION */
 
-function addSticker(){
-  $(this).clone().prependTo($(this));
-  // var $newSticker = $('<img src="../../images/all-the-things.png">');
-  // $newSticker.appendTo($(this));
-};
+// function addSticker(){
+//   // $(this).clone().prependTo($(this));
+
+//   var $newSticker = $('<img src="../../images/all-the-things.png">');
+//   $newSticker.appendTo($('.first'));
+// };
 
 // function addSticker(){
 //   var $newSticker = $('<img src="../../images/all-the-things.png">');
@@ -70,18 +89,32 @@ function addSticker(){
 
 
 function bindPostListeners() {
-  $(".post").on('blur', function(e) {
+  $(".post textarea").on('blur', function(e) {
+    var $parent = $(this).parent('div');
     var postData = {
-      id: $(this).attr("postid"),
+      id: $parent.attr("postid"),
       content: $(this).val(), //assuming $(this) refers to a textarea
-      x: $(this).offset()["left"] + "px", //$(this).css("left") doesnt work, css is too raw, not updated
-      y: $(this).offset()["top"] + "px",
-      width: $(this).css("width"),
-      height: $(this).css("height")
+      x: $parent.offset()["left"] + "px", //$(this).css("left") doesnt work, css is too raw, not updated
+      y: $parent.offset()["top"] + "px",
+      width: $parent.css("width"),
+      height: $parent.css("height")
     };
 // debugger;
     $.ajax({
       url: window.location.pathname + "/post/update",
+      type: 'POST',
+      data: postData
+    });
+  });
+
+  $(".delete").on('click', function(e) {
+    var $parent = $(this).parent('div');
+    var postData = {
+      id: $parent.attr("postid")
+    };
+// debugger;
+    $.ajax({
+      url: window.location.pathname + "/post/delete",
       type: 'POST',
       data: postData
     });
@@ -112,6 +145,13 @@ $.ajax({
 
 $(document).ready(function() {
 
+  $('.resize-container').on('click', '.delete', function() {
+    $(this).parent().remove();
+
+    // todo - send delete api request
+
+  });
+
     interact('.resize')
 
     .resizable(true)
@@ -135,8 +175,9 @@ $(document).ready(function() {
     });
 
     // target elements with the "draggable" class
-interact('.draggable')
+interact('.draggable').ignoreFrom('textarea')
     .draggable({
+
         // allow dragging of multple elements at the same time
         max: Infinity,
 
@@ -198,6 +239,14 @@ interact('.draggable')
   $('.back').click(function(){
     $('#subMenu').show();
     $(this).closest('.sub-menu').hide();
+  });
+
+  $('#option-boards').bind('click', function (event) {
+    
+    //clear the existing HTML
+    //parse the JSON cookie 
+    //for each entry in the cookie, create a DOM element and attach to the
+    //html list
   });
 
 
