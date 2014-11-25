@@ -22,7 +22,7 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
   // newNote.appendTo('.resize-container');
 
   // var $newNote = $('<div contenteditable class="draggable resize post fa fa-times" >' + content + '</div>');
-  newNote = $('<div class="draggable resize post" ><img src="../../images/exit.png" ><textarea >' + content + '</textarea></div>');
+  newNote = $('<div class="draggable resize post" ><a href="javascript: ;" class="delete" ><img src="../../images/exit.png" ></a><textarea >' + content + '</textarea></div>');
   newNote[0].setAttribute('postId', id);
 
   newNote.css({
@@ -68,6 +68,10 @@ function addNoteToDB(content,x,y,width,height) {  //addNote to the view
     }); 
 }
 
+function exit(){
+  console.log(this)
+  $(this).parent().remove();
+}
 
  /* BLIND STICKER RE-GENERATION */
 
@@ -127,6 +131,13 @@ $.ajax({
 
 
 $(document).ready(function() {
+
+  $('.resize-container').on('click', '.delete', function() {
+    $(this).parent().remove();
+
+    // todo - send delete api request
+
+  });
 
     interact('.resize')
 

@@ -40,19 +40,6 @@ a {
   color: #fff;
 }
 
-/*textarea {
-  background: none;
-  border: none;
-  position: absolute;
-  top: 5%;
-  left: 5%;
-  bottom: 5%;
-  right: 5%;
-  width: auto;
-  height: auto;
-  border: 1px solid red;
-}*/
-
 .post textarea {
   width: 100%;
   height: 100%;
