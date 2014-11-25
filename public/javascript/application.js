@@ -90,14 +90,15 @@ function exit(){
 
 
 function bindPostListeners() {
-  $(".post").on('blur', function(e) {
+  $(".post textarea").on('blur', function(e) {
+    var $parent = $(this).parent('div');
     var postData = {
-      id: $(this).attr("postid"),
+      id: $parent.attr("postid"),
       content: $(this).val(), //assuming $(this) refers to a textarea
-      x: $(this).offset()["left"] + "px", //$(this).css("left") doesnt work, css is too raw, not updated
-      y: $(this).offset()["top"] + "px",
-      width: $(this).css("width"),
-      height: $(this).css("height")
+      x: $parent.offset()["left"] + "px", //$(this).css("left") doesnt work, css is too raw, not updated
+      y: $parent.offset()["top"] + "px",
+      width: $parent.css("width"),
+      height: $parent.css("height")
     };
 // debugger;
     $.ajax({
