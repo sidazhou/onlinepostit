@@ -69,8 +69,9 @@ a {
 }
 
 .post img {
-  left: 0;
-  top: 0;
+  position: absolute;
+  right: 5px;
+  top: 5px;
 }
 
 .sub-menu {

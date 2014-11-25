@@ -1,6 +1,11 @@
 
 var newNote; //global, i need this in addNoteToDB()
 
+
+function resizeParent() {
+  $(this).parent.height()
+}
+
 //Adds new note to page when add tab is clicked
 function addNote(id,content,x,y,width,height) {  //addNote to the view
   // setting default values
@@ -31,9 +36,13 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
 
 
   newNote.appendTo('.resize-container');
-  $('.post textarea').autosize().on('autosize.resize', function(){
-    console.log('working!');
-  });
+  // $('textarea', newNote).autosize({
+  //   callback: resizeParent
+  // });
+
+  // $('textarea', newNote).on('change', function() {
+  //   console.log('working!');
+  // });
   // $('.post textarea').elastic();
 
 }
@@ -59,9 +68,6 @@ function addNoteToDB(content,x,y,width,height) {  //addNote to the view
     }); 
 }
 
-function resizeParent() {
-  //$(this).css
-}
 
  /* BLIND STICKER RE-GENERATION */
 
