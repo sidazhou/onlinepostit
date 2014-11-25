@@ -69,7 +69,6 @@ function addNoteToDB(content,x,y,width,height) {  //addNote to the view
 }
 
 function exit(){
-  console.log(this)
   $(this).parent().remove();
 }
 
@@ -103,6 +102,19 @@ function bindPostListeners() {
 // debugger;
     $.ajax({
       url: window.location.pathname + "/post/update",
+      type: 'POST',
+      data: postData
+    });
+  });
+
+  $(".delete").on('click', function(e) {
+    var $parent = $(this).parent('div');
+    var postData = {
+      id: $parent.attr("postid")
+    };
+// debugger;
+    $.ajax({
+      url: window.location.pathname + "/post/delete",
       type: 'POST',
       data: postData
     });

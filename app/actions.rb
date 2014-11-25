@@ -74,7 +74,9 @@ post '/:url/post/update' do
   post.update(content: params[:content], x: fu_hack(params[:x],"20px"), y: fu_hack(params[:y],"20px"), width: params[:width], height: params[:height]) 
 end
 
-# post '/:url/post/:id/delete' do
-#   # "#{params[:url]}"
-#   # "#{params[:id]}"
-# end
+post '/:url/post/delete' do
+  # "#{params[:url]}"
+  # "#{params[:id]}"
+  post = Post.find(params[:id].to_i)
+  post.destroy
+end
