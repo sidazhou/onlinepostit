@@ -1,4 +1,5 @@
-var newNote //global, i need this in addNoteToDB()
+
+var newNote; //global, i need this in addNoteToDB()
 
 //Adds new note to page when add tab is clicked
 function addNote(id,content,x,y,width,height) {  //addNote to the view
@@ -16,12 +17,10 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
   // newNote.appendTo('.resize-container');
 
   // var $newNote = $('<div contenteditable class="draggable resize post fa fa-times" >' + content + '</div>');
-  newNote = $('<textarea class="draggable resize post" >' + content + '</textarea>');
+  newNote = $('<div class="draggable resize post" ><img src="../../images/exit.png" ><textarea >' + content + '</textarea></div>');
   newNote[0].setAttribute('postId', id);
 
   newNote.css({
-    // 'background-image': 'linear-gradient( #FDF98C, #fdee72)',
-    // 'background-image': 'url("../../images/add.png")',
     'background': 'linear-gradient( #FDF98C, #fdee72)',
     'width': width,
     'overflow': 'auto',
@@ -30,9 +29,15 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
     'top': y
   });
 
+
   newNote.appendTo('.resize-container');
-  $('.post').elastic();
+  $('.post textarea').autosize().on('autosize.resize', function(){
+    console.log('working!');
+  });
+  // $('.post textarea').elastic();
+
 }
+
 
 function addNoteToDB(content,x,y,width,height) {  //addNote to the view
     var postData = {
@@ -54,13 +59,18 @@ function addNoteToDB(content,x,y,width,height) {  //addNote to the view
     }); 
 }
 
+function resizeParent() {
+  //$(this).css
+}
+
  /* BLIND STICKER RE-GENERATION */
 
-function addSticker(){
-  $(this).clone().prependTo($(this));
-  // var $newSticker = $('<img src="../../images/all-the-things.png">');
-  // $newSticker.appendTo($(this));
-};
+// function addSticker(){
+//   // $(this).clone().prependTo($(this));
+
+//   var $newSticker = $('<img src="../../images/all-the-things.png">');
+//   $newSticker.appendTo($('.first'));
+// };
 
 // function addSticker(){
 //   var $newSticker = $('<img src="../../images/all-the-things.png">');
@@ -135,8 +145,9 @@ $(document).ready(function() {
     });
 
     // target elements with the "draggable" class
-interact('.draggable')
+interact('.draggable').ignoreFrom('textarea')
     .draggable({
+
         // allow dragging of multple elements at the same time
         max: Infinity,
 
