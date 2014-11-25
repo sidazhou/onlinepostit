@@ -1,12 +1,44 @@
 /* Default Link Styles */
 a {
-  color: #24F767;
+  color: #0FAD41;
   text-decoration: none;
   line-height: inherit; }
   a:hover, a:focus {
-    color: #0FAD41; }
+    color: #0C8633; }
   a img {
     border: none; }
+
+button, .button {
+  border-style: solid;
+  border-width: 0px;
+  cursor: pointer;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-weight: normal;
+  line-height: normal;
+  margin: 0 0 1.25rem;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+  display: inline-block;
+  padding-top: 1rem;
+  padding-right: 2rem;
+  padding-bottom: 1.0625rem;
+  padding-left: 2rem;
+  font-size: 1rem;
+  background-color: #0FAD41;
+  border-color: #007095;
+  color: white;
+  transition: background-color 300ms ease-out; }
+  button:hover, button:focus, .button:hover, .button:focus {
+    background-color: #0C8633; }
+  button:hover, button:focus, .button:hover, .button:focus {
+    color: white; }
+
+.draggable {
+  
+}
 
 
 
@@ -16,7 +48,7 @@ a {
   position: fixed;
   top: 0;
   left: 0;
-  color: #fff;
+  color: #E0DCDC;
   width: 70px; 
   height: 100%;
   background-image: url('../../images/noisy_net.png');
@@ -72,7 +104,9 @@ a {
   float: left;
   height: 100%;
   background-color: #363b41;
+  opacity:0.9;
   padding-left: 0;
+  z-index: 500;
 }
 
 .sub-menu h1 {
@@ -112,7 +146,7 @@ a {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
-  border: 1px solid #3b4148;
+  /*border: 1px solid #3b4148;*/
 }
 
 .sub-menu li:hover {
