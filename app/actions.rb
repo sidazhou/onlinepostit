@@ -28,8 +28,12 @@ get '/:url' do
     Board.create(url: params[:url])
   end
 
+begin #hack to fix error if cookie is empty
   temp = URI.decode(cookies[:board_history])
   @board_history = JSON.parse(temp)
+rescue
+  @board_history = []
+end
 
   append_cookies_board_history(params[:url]) # cookies[:board_history] is ready to use, which is a array of stings, from lest recent to most recent
 

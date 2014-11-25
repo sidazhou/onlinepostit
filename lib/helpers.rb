@@ -1,6 +1,6 @@
 module Helpers
   def generate_rand_str
-    length = 20 # characters
+    length = 7 # characters
     rand(36**length).to_s(36)
   end
 
@@ -23,7 +23,7 @@ helpers do
     arr <<  str unless arr.include?(str)
 
     # save only most recent history
-    arr = arr.last(5) if arr.size > 5
+    arr = arr.last(3) if arr.size > 3
 
     # set history
     response.set_cookie "board_history", arr.to_json

@@ -10,7 +10,7 @@ function resizeParent() {
 function addNote(id,content,x,y,width,height) {  //addNote to the view
   // setting default values
 
-  if(typeof(content)==='undefined') content = "lorem ipsum";
+  if(typeof(content)==='undefined') content = "";
   if(typeof(x)==='undefined') x = "150px"; 
   if(typeof(y)==='undefined') y = "50px";
   if(typeof(width)==='undefined') width = "220px";  
