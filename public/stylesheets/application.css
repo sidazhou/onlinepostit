@@ -36,6 +36,10 @@ button, .button {
   button:hover, button:focus, .button:hover, .button:focus {
     color: white; }
 
+.draggable {
+  
+}
+
 
 
 /*----- SIDE BAR -----*/
@@ -44,7 +48,7 @@ button, .button {
   position: fixed;
   top: 0;
   left: 0;
-  color: #fff;
+  color: #E0DCDC;
   width: 70px; 
   height: 100%;
   background-image: url('../../images/noisy_net.png');
@@ -100,6 +104,7 @@ button, .button {
   float: left;
   height: 100%;
   background-color: #363b41;
+  opacity:0.9;
   padding-left: 0;
   z-index: 500;
 }
@@ -141,7 +146,7 @@ button, .button {
   padding-top: 10px;
   padding-bottom: 10px;
   text-align: center;
-  border: 1px solid #3b4148;
+  /*border: 1px solid #3b4148;*/
 }
 
 .sub-menu li:hover {
