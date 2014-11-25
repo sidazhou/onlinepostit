@@ -1,11 +1,18 @@
 
 # Homepage (Root path)
 get '/' do
-
-  redirect "/#{generate_rand_str}"
+  begin #hack to fix error if cookie is empty
+  temp = URI.decode(cookies[:board_history])
+  @board_history = JSON.parse(temp)
+  rescue
+    @board_history = []
+  end
+  erb :landing_page  
 end
 
-
+get '/goto/random/page' do
+  redirect "/#{generate_rand_str}"
+end
 
 # Testing ####################
 get '/test/history/view' do
