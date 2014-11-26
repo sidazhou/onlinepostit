@@ -22,7 +22,9 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
   // newNote.appendTo('.resize-container');
 
   // var $newNote = $('<div contenteditable class="draggable resize post fa fa-times" >' + content + '</div>');
-  newNote = $('<div class="draggable resize post" ><a href="javascript: ;" class="delete" ><img src="../../images/exit.png" ></a><textarea >' + content + '</textarea></div>');
+  newNote = $('<div class="draggable resize post" >' + 
+    '<a href="javascript: ;" class="delete" ><img src="../../images/exit.png" ></a>' +
+    '<textarea >' + content + '</textarea></div>');
   newNote[0].setAttribute('postId', id);
 
   newNote.css({
@@ -87,25 +89,46 @@ function exit(){
 // };
 
 
+function updatePost($el) {
+
+  var $parent = $el.parent('div');
+  var postData = {
+    id: $parent.attr("postid"),
+    content: $el.val(), //assuming $el refers to a textarea
+    x: $parent.offset().left + "px", //$el.css("left") doesnt work, css is too raw, not updated
+    y: $parent.offset().top + "px",
+    width: $parent.css("width"),
+    height: $parent.css("height")
+  };
+
+  $.ajax({
+    url: window.location.pathname + "/post/update",
+    type: 'POST',
+    data: postData
+  });
+}
+
 
 function bindPostListeners() {
-  $(".post textarea").on('blur', function(e) {
-    var $parent = $(this).parent('div');
-    var postData = {
-      id: $parent.attr("postid"),
-      content: $(this).val(), //assuming $(this) refers to a textarea
-      x: $parent.offset()["left"] + "px", //$(this).css("left") doesnt work, css is too raw, not updated
-      y: $parent.offset()["top"] + "px",
-      width: $parent.css("width"),
-      height: $parent.css("height")
-    };
-// debugger;
-    $.ajax({
-      url: window.location.pathname + "/post/update",
-      type: 'POST',
-      data: postData
+  $(".post")
+    .on('click', function(e) {
+      $(this).find("textarea").focus();
     });
-  });
+  $(".post textarea").on('focus', function(e) { 
+      // console.log(".post focused");
+      window.$latest_post = $(this); //global
+    })
+    // .on('click',function(e) { console.log(".post clicked "); })
+    .on('blur', function(e) {
+      updatePost($(this));
+    });
+
+  // $("div.draggable.resize.post")
+  //   .on('focus', function(e) {
+  //     window.$latest_focused_div = $(this); // for resize hack
+  //     console.log("latest_focused_div focused");
+  //   });
+  
 
   $(".delete").on('click', function(e) {
     var $parent = $(this).parent('div');
@@ -120,8 +143,6 @@ function bindPostListeners() {
     });
   });
 } //end function
-
-
 
   /* Post It Moveability */
 function postLoadAll(){
@@ -142,14 +163,24 @@ $.ajax({
     });
 }
 
+  function sleep(ms) {
+    var unixtime_ms = new Date().getTime();
+    while(new Date().getTime() < unixtime_ms + ms) {}
+}
+
+  window.onbeforeunload = function() {
+    updatePost(window.$latest_post);
+
+    sleep(500);
+    // return "YOur about to leave this page";
+  };
 
 $(document).ready(function() {
 
+
   $('.resize-container').on('click', '.delete', function() {
     $(this).parent().remove();
-
     // todo - send delete api request
-
   });
 
     interact('.resize')
@@ -162,7 +193,6 @@ $(document).ready(function() {
       var
         newWidth  = parseFloat(target.style.width ) + event.dx,
         newHeight = parseFloat(target.style.height) + event.dy;
-
       // update the element's style
       target.style.width  = newWidth + 'px';
       target.style.height = newHeight + 'px';
@@ -172,6 +202,15 @@ $(document).ready(function() {
       postHight = newHeight + 'px';
 
       // target.textContent = newWidth + '×' + newHeight;
+    })
+// debugger;
+    .on('resizeend', function (event) {
+
+      // updatePost($(this).find("> textarea") );
+      // console.log($(this).height());
+      // updatePost(window.$latest_focused_div.find("> textarea"));
+      console.log("Resize ended start!");
+      console.log("Resize ended!");
     });
 
     // target elements with the "draggable" class
@@ -207,6 +246,8 @@ interact('.draggable').ignoreFrom('textarea')
                 'moved a distance of '
                 + (Math.sqrt(event.dx * event.dx +
                              event.dy * event.dy)|0) + 'px');
+
+
         }
     })
     // enable inertial throwing
