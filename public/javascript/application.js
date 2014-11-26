@@ -89,16 +89,20 @@ function exit(){
 
 
 function bindPostListeners() {
-  $(".post textarea").on('blur', function(e) {
-    var $parent = $(this).parent('div');
-    var postData = {
-      id: $parent.attr("postid"),
-      content: $(this).val(), //assuming $(this) refers to a textarea
-      x: $parent.offset()["left"] + "px", //$(this).css("left") doesnt work, css is too raw, not updated
-      y: $parent.offset()["top"] + "px",
-      width: $parent.css("width"),
-      height: $parent.css("height")
-    };
+  $(".post textarea")
+    .on('focus', function(e) { 
+      window.$latest_post = $(this);
+    })
+    .on('blur', function(e) {
+      var $parent = $(this).parent('div');
+      var postData = {
+        id: $parent.attr("postid"),
+        content: $(this).val(), //assuming $(this) refers to a textarea
+        x: $parent.offset().left + "px", //$(this).css("left") doesnt work, css is too raw, not updated
+        y: $parent.offset().top + "px",
+        width: $parent.css("width"),
+        height: $parent.css("height")
+      };
 // debugger;
     $.ajax({
       url: window.location.pathname + "/post/update",
@@ -121,6 +125,10 @@ function bindPostListeners() {
   });
 } //end function
 
+function Post () {
+  this.dirty = false;
+}
+
 
 
   /* Post It Moveability */
@@ -142,8 +150,34 @@ $.ajax({
     });
 }
 
+  function sleep(ms) {
+    var unixtime_ms = new Date().getTime();
+    while(new Date().getTime() < unixtime_ms + ms) {}
+}
+
+  window.onbeforeunload = function() {
+    var $parent = window.$latest_post.parent('div');
+    var postData = {
+      id: $parent.attr("postid"),
+      content: window.$latest_post.val(), //assuming window.$latest_post refers to a textarea
+      x: $parent.offset().left + "px", //$(this).css("left") doesnt work, css is too raw, not updated
+      y: $parent.offset().top + "px",
+      width: $parent.css("width"),
+      height: $parent.css("height")
+    };
+
+    $.ajax({
+      url: window.location.pathname + "/post/update",
+      type: 'POST',
+      data: postData
+    });
+
+    sleep(300);
+    // return "YOur about to leave this page";
+  };
 
 $(document).ready(function() {
+
 
   $('.resize-container').on('click', '.delete', function() {
     $(this).parent().remove();
