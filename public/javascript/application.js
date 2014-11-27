@@ -2,8 +2,19 @@
 var $newNote; //global, i need this in addNoteToDB()
 
 
-function resizeParent() {
-  $(this).parent.height()
+// function resizeParent() {
+//   $(this).parent.height()
+// }
+
+function moveCaretToEnd(el) {
+    if (typeof el.selectionStart == "number") {
+        el.selectionStart = el.selectionEnd = el.value.length;
+    } else if (typeof el.createTextRange != "undefined") {
+        el.focus();
+        var range = el.createTextRange();
+        range.collapse(false);
+        range.select();
+    }
 }
 
 //Adds new note to page when add tab is clicked
@@ -115,8 +126,18 @@ function bindPostListeners() {
       $(this).find("textarea").focus();
     });
   $(".post textarea").on('focus', function(e) { 
-      // console.log(".post focused");
       window.$latest_post = $(this); //global
+
+  //http://stackoverflow.com/questions/4715762/javascript-move-caret-to-last-character
+    moveCaretToEnd(this);
+    // Work around Chrome's little problem
+    textarea.onmouseup = function() {
+        // Prevent further mouseup intervention
+        moveCaretToEnd(this);
+        textarea.onmouseup = null;
+        return false;
+    };
+
     })
     // .on('click',function(e) { console.log(".post clicked "); })
     .on('blur', function(e) {
