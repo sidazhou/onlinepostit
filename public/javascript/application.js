@@ -1,9 +1,20 @@
 
-var newNote; //global, i need this in addNoteToDB()
+var $newNote; //global, i need this in addNoteToDB()
 
 
-function resizeParent() {
-  $(this).parent.height()
+// function resizeParent() {
+//   $(this).parent.height()
+// }
+
+function moveCaretToEnd(el) {
+    if (typeof el.selectionStart == "number") {
+        el.selectionStart = el.selectionEnd = el.value.length;
+    } else if (typeof el.createTextRange != "undefined") {
+        el.focus();
+        var range = el.createTextRange();
+        range.collapse(false);
+        range.select();
+    }
 }
 
 //Adds new note to page when add tab is clicked
@@ -17,17 +28,17 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
   if(typeof(height)==='undefined') height = "120px";
 
 
-  // var newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
-  // var newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
-  // newNote.appendTo('.resize-container');
+  // var $newNote = $('<div class="resize draggable post" style="width: 200px; height: 200px;"></div>');
+  // var $newNote = $('<div class="resize draggable drag-drop" style="width: 300px; height: 300px; margin-left: 310px;"><textarea rows="8" cols="50"></textarea></div>');
+  // $newNote.appendTo('.resize-container');
 
-  // var $newNote = $('<div contenteditable class="draggable resize post fa fa-times" >' + content + '</div>');
-  newNote = $('<div class="draggable resize post" >' + 
+  // var $$newNote = $('<div contenteditable class="draggable resize post fa fa-times" >' + content + '</div>');
+  $newNote = $('<div class="post resize draggable" >' + 
     '<a href="javascript: ;" class="delete" ><img src="../../images/exit.png" ></a>' +
     '<textarea >' + content + '</textarea></div>');
-  newNote[0].setAttribute('postId', id);
+  $newNote[0].setAttribute('postId', id);
 
-  newNote.css({
+  $newNote.css({
     'background': 'linear-gradient( #FDF98C, #fdee72)',
     'width': width,
     'overflow': 'auto',
@@ -37,12 +48,12 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
   });
 
 
-  newNote.appendTo('.resize-container');
-  // $('textarea', newNote).autosize({
+  $newNote.appendTo('.resize-container');
+  // $('textarea', $newNote).autosize({
   //   callback: resizeParent
   // });
 
-  // $('textarea', newNote).on('change', function() {
+  // $('textarea', $newNote).on('change', function() {
   //   console.log('working!');
   // });
   // $('.post textarea').elastic();
@@ -52,11 +63,11 @@ function addNote(id,content,x,y,width,height) {  //addNote to the view
 
 function addNoteToDB(content,x,y,width,height) {  //addNote to the view
     var postData = {
-      content: newNote.text(),
-      x: newNote.offset()["left"] + "px",
-      y: newNote.offset()["top"] + "px",
-      width: newNote.css("width"),
-      height: newNote.css("height")
+      content: $newNote.text(),
+      x: $newNote.offset()["left"] + "px",
+      y: $newNote.offset()["top"] + "px",
+      width: $newNote.css("width"),
+      height: $newNote.css("height")
     };
 
     $.ajax({
@@ -64,7 +75,7 @@ function addNoteToDB(content,x,y,width,height) {  //addNote to the view
       type: 'POST',
       data: postData,
       success: function(id) {
-        newNote[0].setAttribute('postId', id);
+        $newNote[0].setAttribute('postId', id);
 
       }
     }); 
@@ -115,8 +126,18 @@ function bindPostListeners() {
       $(this).find("textarea").focus();
     });
   $(".post textarea").on('focus', function(e) { 
-      // console.log(".post focused");
       window.$latest_post = $(this); //global
+
+  //http://stackoverflow.com/questions/4715762/javascript-move-caret-to-last-character
+    moveCaretToEnd(this);
+    // Work around Chrome's little problem
+    textarea.onmouseup = function() {
+        // Prevent further mouseup intervention
+        moveCaretToEnd(this);
+        textarea.onmouseup = null;
+        return false;
+    };
+
     })
     // .on('click',function(e) { console.log(".post clicked "); })
     .on('blur', function(e) {
@@ -183,8 +204,7 @@ $(document).ready(function() {
     // todo - send delete api request
   });
 
-    interact('.resize')
-
+interact('.post')
     .resizable(true)
     .on('resizemove', function (event) {
       var target = event.target;
@@ -211,10 +231,7 @@ $(document).ready(function() {
       // updatePost(window.$latest_focused_div.find("> textarea"));
       console.log("Resize ended start!");
       console.log("Resize ended!");
-    });
-
-    // target elements with the "draggable" class
-interact('.draggable').ignoreFrom('textarea')
+    })
     .draggable({
 
         // allow dragging of multple elements at the same time
@@ -247,14 +264,13 @@ interact('.draggable').ignoreFrom('textarea')
                 + (Math.sqrt(event.dx * event.dx +
                              event.dy * event.dy)|0) + 'px');
 
-
         }
     })
     // enable inertial throwing
     .inertia(true)
     // keep the element within the area of it's parent
     .restrict({
-        drag: ".dropzone",
+        drag: "#inner-dropzone.dropzone",
         endOnly: true,
         elementRect: { top: 0, left: 0, bottom: 0, right: 1 }
     });

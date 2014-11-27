@@ -11,8 +11,8 @@
 <aside class="sub-menu" id="subMenu">
   <ul id="submenu">
     <!-- changed below to class -->
-    <li data-target="menuSticker" id="option-stickers">Stickers</li>
-    <li data-target="menuHistory" id="option-boards">My Boards</li>
+    <!-- <li data-target="menuSticker" id="option-stickers">Stickers</li> -->
+    <li data-target="menuHistory" id="option-boards">Old Boards</li>
     <li data-target="menuNew" id="option-new">New Board</li>
   </ul>
 </aside>
@@ -105,8 +105,8 @@
 
 <!-- History MENU-->
 <aside class="sub-menu sub-menu-content" id="menuHistory">
-  <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p>
-  <h1>My boards</h1>
+<!--   <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p> -->
+  <h1>Old Boards</h1>
   <ul>
   <% if !@board_history.empty? %>
     <% @board_history.reverse_each do |address| %>
@@ -119,8 +119,8 @@
 
 <!-- NEW BOARD MENU-->
 <aside class="sub-menu sub-menu-content" id="menuNew">
-  <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p>
-  <h1>Go to a New Board</h1>
+<!--   <p class="back"><span class="fa fa-angle-double-left "></span>&nbsp;Back to menu</p> -->
+  <h1>New Board</h1>
   <br>
   <form action="/goto/custom_url" method="POST">  
     <div class="small-9 columns">

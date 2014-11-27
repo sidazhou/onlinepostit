@@ -23,7 +23,7 @@ helpers do
     arr <<  str unless arr.include?(str)
 
     # save only most recent history
-    arr = arr.last(3) if arr.size > 3
+    arr = arr.last(4) if arr.size > 4
 
     # set history
     response.set_cookie "board_history", arr.to_json
