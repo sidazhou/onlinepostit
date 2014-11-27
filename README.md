@@ -1,8 +1,6 @@
-Sinatra
+Visit the page
 =============
-
-Skeleton by Lighthouse Labs
-Modified by Sida
+http://www.onlinepostit.com
 
 ## Getting Started
 
@@ -11,17 +9,17 @@ Modified by Sida
 3. `shotgun -p 3000 -o 0.0.0.0`
 4. Visit `http://localhost:3000/` in your browser
 
-=============
+## TO DO LIST:
 
-## Deploying on heroku without db:
 
-- remove all rake tasks
-- remove `require APP_ROOT.join('config', 'database')` from environment.rb
-
-=============
-
-## Contributors
-
-Sida Zhou
-Krishna Jolliffe
+- text not selectable (drag+resize+interact.js+textarea=problem)
+- textbox auto resize 
+- z-index
+- save on resize, when not focused
+- get/set position, not using the fu_hack
+- dont create board in db if no posts
+- support callback function
+- new post created at diff location
+- stickers feature
+- fix cookie empty hack
 
