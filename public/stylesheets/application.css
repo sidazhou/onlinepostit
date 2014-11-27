@@ -54,6 +54,7 @@ button, .button {
   background-image: url('../../images/noisy_net.png');
   float: left;
   z-index: 100000;
+  opacity: 0.9;
 }
 
 .nav-bar ul {
@@ -206,7 +207,7 @@ button, .button {
 /*margin-left: 310px;*/
 padding-left: 310px;
 max-width: 1200px;
-height: 5000px;
+height: 600px;
 
 }
 
